@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY rfc4462 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4462.xml">
+<!ENTITY rfc2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+]>
+<?xml-stylesheet type="text/xsl" href="rfc2629.xslt"?>
+
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<?rfc toc="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc rfcedstyle="yes"?>
+<?rfc autobreaks="yes"?>
+<?rfc docmapping="yes"?>
+
+<rfc category="std" docName="draft-gss-keyex-sha2-00"
+     ipr="trust200902" updates="4462">
+  <front>
+    <title abbrev="GSS Keyex SHA2">GSS-API Key Exchange with SHA2</title>
+
+    <author fullname="Simo Sorce" initials="S." surname="Sorce">
+      <organization>Red Hat, Inc.</organization>
+
+      <address>
+        <postal>
+          <street>140 Broadway</street>
+
+          <street>24th Floor</street>
+
+          <city>New York</city>
+
+          <region>NY</region>
+
+          <code>10025</code>
+
+          <country>USA</country>
+        </postal>
+
+        <email>simo@redhat.com</email>
+      </address>
+    </author>
+
+    <date month="Jul" year="2016" />
+
+    <area>Security</area>
+
+    <workgroup>Internet Engineering Task Force</workgroup>
+
+    <abstract>
+      <t>This document specifies additions and amendments to <xref target="RFC4462">SSH
+      GSS-API Methods</xref>. It defines a new key exchange method that uses SHA-2 for
+      integrity and deprecates weak DH groups. The purpose of this specification is to
+      modernize the cryptographic primitives used by GSS Key Exchanges.</t>
+    </abstract>
+  </front>
+
+
+  <middle>
+    <section title="Introduction">
+      <t><xref target="RFC4462">SSH GSS-API Methods</xref> allows the use of GSSAPI for
+      authentication and key exchange in SSH.
+      services over a network. It defines three exchange methods all based on DH groups
+      and SHA-1. The new methods described in this document are intended to support
+      environments that desired to use the SHA-2 cryptographic hash functions.</t>
+    </section>
+
+    <section title="Document Conventions">
+      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+      "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+      document are to be interpreted as described in <xref target="RFC2119">
+      RFC 2119</xref>.</t>
+    </section>
+
+    <section title="New Method sections Here">
+      <t>TBD New Method</t>
+    </section>
+
+    <section title="IANA Considerations">
+      <t>TBD Register New Method</t>
+    </section>
+
+    <section title="Security Considerations">
+      <t>Except for the use of a different secure hash function, no other significant
+      changes has been made to the protocol described by <xref target="RFC4462">SSH
+      GSS-API Methods</xref> therefore all the original Security Considerations apply.</t>
+    </section>
+
+  </middle>
+
+  <back>
+<?rfc rfcedstyle="no"?>
+    <references title="Normative References">
+
+      <!--SSH GSS-API Methods-->
+
+      &rfc4462;
+
+      <!--SHA-2-->
+
+      <reference anchor="FIPS-PUB-180-4"
+               target="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">
+           <front>
+               <title>FIPS PUB 180-4: Secure Hash Standard (SHS)</title>
+               <author>
+                    <organization>NIST</organization>
+               </author>
+
+               <date month="August" year="2015" />
+           </front>
+
+       </reference>
+
+      <!--Key words for use in RFCs to Indicate Requirement Levels-->
+
+      &rfc2119;
+
+    </references>
+  </back>
+</rfc>
