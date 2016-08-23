@@ -41,6 +41,24 @@
       </address>
     </author>
 
+    <author fullname="Hubert Kario" initials="H." surname="Kario">
+      <organization>Red Hat, Inc.</organization>
+
+      <address>
+        <postal>
+          <street>Purkynova 99/71</street>
+
+          <city>Brno</city>
+
+          <code>612 45</code>
+
+          <country>Czech Republic</country>
+        </postal>
+
+        <email>hkario@redhat.com</email>
+      </address>
+    </author>
+
     <date month="Jul" year="2016" />
 
     <area>Security</area>
