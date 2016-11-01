@@ -76,11 +76,20 @@
 
   <middle>
     <section title="Introduction">
-      <t><xref target="RFC4462">SSH GSS-API Methods</xref> allows the use of GSSAPI for
-      authentication and key exchange in SSH.
-      services over a network. It defines three exchange methods all based on DH groups
-      and SHA-1. The new methods described in this document are intended to support
-      environments that desired to use the SHA-2 cryptographic hash functions.</t>
+      <t><xref target="RFC4462">SSH GSS-API Methods</xref> allows the use of
+      GSSAPI for authentication and key exchange in SSH. It defines three
+      exchange methods all based on DH groups and SHA-1. The new methods
+      described in this document are intended to support environments that
+      desired to use the SHA-2 cryptographic hash functions.</t>
+    </section>
+
+    <section title="Rationale">
+      Due to security concerns with SHA-1 <xref target="RFC6194"/> and with
+      MODP groups with less than 2048 bits <xref target="NIST-SP-800-131Ar1"/>
+      we propose the use of the SHA-2 based hashes with DH group14, group16
+      and group18 <xref target="RFC3526"/>. Following the rationale of <xref
+      target="draft-ietf-curdle-ssh-kex-sha2-01"> only SHA-256 and SHA-512
+      hashes are used.
     </section>
 
     <section title="Document Conventions">
@@ -90,18 +99,81 @@
       RFC 2119</xref>.</t>
     </section>
 
-    <section title="New Method sections Here">
-      <t>TBD New Method</t>
+    <section title="New GSS-API Key Exchange methods">
+      <t>This document adopts the same naming convention defined in <xref
+        target="RFC4462"/> to define families of methods that cover any
+        GSS-API mechanism used with a specific Diffie-Helman group and
+        SHA-2 Hash combination.
+      </t>
+      <figure anchor="figure.algs">
+        <preamble>The following new key exchange algorithms are defined:
+        </preamble>
+        <artwork>
+Key Exchange Method Name        Note
+gss-group14-sha256-*            SHOULD/RECOMMENDED
+gss-group16-sha512-*            SHOULD/RECOMMENDED
+gss-group18-sha512-*            MAY/OPTIONAL
+        </artwork>
+      </figure>
+      <t>Each key exchange method is implicitly registered by this document.
+        The IESG is considered to be the owner of all these key exchange
+        methods; this does NOT imply that the IESG is considered to be the
+        owner of the underlying GSS-API mechanism.
+      </t>
+      <section title="gss-group14-sha256-*">
+        Each of these methods specifies GSS-API-authenticated Diffie-Hellman
+        key exchange as described in Section 2.1 of <xref target="RFC4462"/>
+        with SHA-256 as HASH, and the group defined in Section 8.2 of <xref
+        target="RFC4253"/> The method name for each method is the
+        concatenation of the string "gss-group14-sha256-" with the Base64
+        encoding of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
+        encoding <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
+        mechanism's OID. Base64 encoding is described in Section 6.8 of
+        <xref target="RFC2045"/>.
+      </section>
+
+      <section title="gss-group16-sha512-*">
+        Each of these methods specifies GSS-API-authenticated Diffie-Hellman
+        key exchange as described in Section 2.1 of <xref target="RFC4462"/>
+        with SHA-512 as HASH, and the group defined in Section 5 of <xref
+        target="RFC3526"/> The method name for each method is the
+        concatenation of the string "gss-group16-sha512-" with the Base64
+        encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
+        GSS-API mechanism's OID.
+      </section>
+
+      <section title="gss-group18-sha512-*">
+        Each of these methods specifies GSS-API-authenticated Diffie-Hellman
+        key exchange as described in Section 2.1 of <xref target="RFC4462"/>
+        with SHA-512 as HASH, and the group defined in Section 7 of <xref
+        target="RFC3526"/> The method name for each method is the
+        concatenation of the string "gss-group18-sha512-" with the Base64
+        encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
+        GSS-API mechanism's OID.
+      </section>
+
     </section>
 
     <section title="IANA Considerations">
-      <t>TBD Register New Method</t>
+      <t>This document augments the SSH Key Exchange Method Names in <xref
+      target="RFC4462"/>.</t>
+      <figure anchor="figure.iana">
+        <preamble>IANA is requested to update the SSH
+        algorithm registry with the following entries:</preamble>
+        <artwork>
+Key Exchange Method Name    Reference       Note
+gss-group14-sha256-*        This draft      SHOULD
+gss-group16-sha512-*        This draft      SHOULD
+gss-group18-sha512-*        This draft      MAY
+        </artwork>
+      </figure>
     </section>
 
     <section title="Security Considerations">
-      <t>Except for the use of a different secure hash function, no other significant
-      changes has been made to the protocol described by <xref target="RFC4462">SSH
-      GSS-API Methods</xref> therefore all the original Security Considerations apply.</t>
+      <t>Except for the use of a different secure hash function and larger DH
+      groups, no significant changes has been made to the protocol described
+      by <xref target="RFC4462"/>; therefore all the original Security
+      Considerations apply.</t>
     </section>
 
   </middle>
@@ -110,29 +182,59 @@
 <?rfc rfcedstyle="no"?>
     <references title="Normative References">
 
+      <!--DH GROUPS-->
+
+      &RFC3526;
+
+      <!-- SSH Transport -->
+
+      &RFC4253;
+
       <!--SSH GSS-API Methods-->
 
-      &rfc4462;
+      &RFC4462;
 
       <!--SHA-2-->
 
-      <reference anchor="FIPS-PUB-180-4"
-               target="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">
-           <front>
-               <title>FIPS PUB 180-4: Secure Hash Standard (SHS)</title>
-               <author>
-                    <organization>NIST</organization>
-               </author>
-
-               <date month="August" year="2015" />
-           </front>
-
+      <reference
+          anchor="FIPS-180-4"
+          target="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">
+        <front>
+          <title>FIPS PUB 180-4: Secure Hash Standard (SHS)</title>
+          <author>
+            <organization>National Institute of Standards and Technology
+            </organization>
+          </author>
+          <date month="August" year="2015"/>
+        </front>
+        <seriesInfo name="FIPS PUB" value="180-4"/>
        </reference>
+
+      <reference
+          anchor="ISO-IEC-8825-1"
+          target="http://standards.iso.org/ittf/PubliclyAvailableStandards/c068345_ISO_IEC_8825-1_2015.zip">
+        <front>
+          <title>ASN.1 encoding rules: Specification of Basic Encoding Rules
+          (BER), Canonical Encoding Rules (CER) and Distinguished Encoding
+          Rules (DER)</title>
+          <author>
+            <organization>International Organization for Standardization /
+            International Electrotechnical Commission</organization>
+          </author>
+          <date day="15" month="November" year="2015"/>
+        </front>
+        <seriesInfo name="ISO/IEC" value="8825-1"/>
+      </reference>
 
       <!--Key words for use in RFCs to Indicate Requirement Levels-->
 
       &rfc2119;
 
+      <!--New Key Exchange algorithms draft-->
+
+      &draft-ietf-curdle-ssh-kex-sha2-01;
+
     </references>
+
   </back>
 </rfc>
