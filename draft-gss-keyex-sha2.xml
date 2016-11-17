@@ -192,7 +192,7 @@
         verification steps prescribed in Section 4 of <xref target="RFC5656"/>
         apply here as well.</t>
 
-        <t>The symbols used in this descruption confrom to the symblos used in
+        <t>The symbols used in this description confrom to the symblos used in
         Section 2.1 of <xref target="RFC4462"/>. Additionally, the following
         symbols are defined:</t>
         <t>Q_C is the client ephemeral public key octet string</t>
@@ -469,10 +469,10 @@
       </section>
       <section title="New Elliptic Curve DH mechanisms">
         <t>Although a new cryptographic primitive is used with these methods
-        the acrtual key exchange closely follows the key exchange defined in
+        the actual key exchange closely follows the key exchange defined in
         <xref target="RFC5656"/>; therefore all the original Security
-        Considerations as well as the Security consideration expressed in
-        <xref target="RFC5656"/> apply.</t>
+        Considerations as well as those expressed in <xref target="RFC5656"/>
+        apply.</t>
       </section>
     </section>
 
