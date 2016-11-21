@@ -86,8 +86,11 @@
     <section title="Rationale">
       Due to security concerns with SHA-1 <xref target="RFC6194"/> and with
       MODP groups with less than 2048 bits <xref target="NIST-SP-800-131Ar1"/>
-      we propose the use of the SHA-2 based hashes with DH group14, group16
-      and group18 <xref target="RFC3526"/>. Following the rationale of <xref
+      we propose the use of the SHA-2 based hashes with DH group14, group15,
+      group16, group17 and group18 <xref target="RFC3526"/>. Additionally we
+      add support for key exchange based on Elliptic Curve Diffie Hellman with
+      NIST P-256, P-384 and P-521 as well as X25519 and X448 curves.
+      Following the rationale of <xref
       target="draft-ietf-curdle-ssh-kex-sha2-01"> only SHA-256 and SHA-512
       hashes are used.
     </section>
