@@ -102,7 +102,7 @@
     <section title="New Diffie-Hellman Key Exchange methods">
       <t>This document adopts the same naming convention defined in <xref
         target="RFC4462"/> to define families of methods that cover any
-        GSS-API mechanism used with a specific Diffie-Helman group and
+        GSS-API mechanism used with a specific Diffie-Hellman group and
         SHA-2 Hash combination.
       </t>
       <figure anchor="figure.algs">
@@ -192,7 +192,7 @@
         verification steps prescribed in Section 4 of <xref target="RFC5656"/>
         apply here as well.</t>
 
-        <t>The symbols used in this description confrom to the symblos used in
+        <t>The symbols used in this description conform to the symbols used in
         Section 2.1 of <xref target="RFC4462"/>. Additionally, the following
         symbols are defined:</t>
         <t>Q_C is the client ephemeral public key octet string</t>
@@ -274,7 +274,7 @@
           the client.</t>
         </list>
 
-        <t>5. S generates an ephemeral key pair with public key Q_S and peforms
+        <t>5. S generates an ephemeral key pair with public key Q_S and performs
         the following computations:</td>
         <list>
           <td>K a shared secret obtained using Q_C and Q_S.</td>
@@ -309,7 +309,7 @@
         a major_status other than GSS_S_COMPLETE or GSS_S_CONTINUE_NEEDED, or
         any other GSS-API call returns a major_status other than
         GSS_S_COMPLETE, the key exchange MUST fail. The same recommendations
-        expressed in Section 2.1 of <xref target="RFC4462"/> are folowed with
+        expressed in Section 2.1 of <xref target="RFC4462"/> are followed with
         regards to error reporting.</td>
 
         <td>This excahnge is implemented with the following messages:</td>
