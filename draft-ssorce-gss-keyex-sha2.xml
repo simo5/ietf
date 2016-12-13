@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!ENTITY rfc4462 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4462.xml">
-<!ENTITY rfc2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC1321 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1321.xml">
+<!ENTITY RFC2045 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2045.xml">
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC3526 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3526.xml">
+<!ENTITY RFC4253 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4253.xml">
+<!ENTITY RFC4462 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4462.xml">
+<!ENTITY RFC5656 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5656.xml">
+<!ENTITY RFC6194 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6194.xml">
+<!ENTITY SSHCURVES PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-curves-00.xml'>
+<!ENTITY SSHKEXSHA2 PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-kex-sha2-05.xml'>
 ]>
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt"?>
 
@@ -14,7 +22,7 @@
 <?rfc autobreaks="yes"?>
 <?rfc docmapping="yes"?>
 
-<rfc category="std" docName="draft-gss-keyex-sha2-00"
+<rfc category="std" docName="draft-ssorce-gss-keyex-sha2-00"
      ipr="trust200902" updates="4462">
   <front>
     <title abbrev="GSS Keyex SHA2">GSS-API Key Exchange with SHA2</title>
@@ -84,15 +92,15 @@
     </section>
 
     <section title="Rationale">
-      Due to security concerns with SHA-1 <xref target="RFC6194"/> and with
+      <t>Due to security concerns with SHA-1 <xref target="RFC6194"/> and with
       MODP groups with less than 2048 bits <xref target="NIST-SP-800-131Ar1"/>
       we propose the use of the SHA-2 based hashes with DH group14, group15,
       group16, group17 and group18 <xref target="RFC3526"/>. Additionally we
       add support for key exchange based on Elliptic Curve Diffie Hellman with
       NIST P-256, P-384 and P-521 as well as X25519 and X448 curves.
       Following the rationale of <xref
-      target="draft-ietf-curdle-ssh-kex-sha2-01"> only SHA-256 and SHA-512
-      hashes are used.
+      target="I-D.ietf-curdle-ssh-kex-sha2"/> only SHA-256 and SHA-512
+      hashes are used.</t>
     </section>
 
     <section title="Document Conventions">
@@ -108,10 +116,9 @@
         GSS-API mechanism used with a specific Diffie-Hellman group and
         SHA-2 Hash combination.
       </t>
-      <figure anchor="figure.algs">
+      <texttable>
         <preamble>The following new key exchange algorithms are defined:
         </preamble>
-        <texttable>
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Implementation Recommendations</ttcol>
           <c>gss-group14-sha256-*</c><c>SHOULD/RECOMMENDED</c>
@@ -119,15 +126,14 @@
           <c>gss-group16-sha512-*</c><c>SHOULD/RECOMMENDED</c>
           <c>gss-group17-sha512-*</c><c>MAY/OPTIONAL</c>
           <c>gss-group18-sha512-*</c><c>MAY/OPTIONAL</c>
-        </texttable>
-      </figure>
+      </texttable>
       <t>Each key exchange method is implicitly registered by this document.
         The IESG is considered to be the owner of all these key exchange
         methods; this does NOT imply that the IESG is considered to be the
         owner of the underlying GSS-API mechanism.
       </t>
       <section title="gss-group14-sha256-*">
-        Each of these methods specifies GSS-API-authenticated Diffie-Hellman
+        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
         key exchange as described in Section 2.1 of <xref target="RFC4462"/>
         with SHA-256 as HASH, and the group defined in Section 8.2 of <xref
         target="RFC4253"/> The method name for each method is the
@@ -135,49 +141,48 @@
         encoding of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
         encoding <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
         mechanism's OID. Base64 encoding is described in Section 6.8 of
-        <xref target="RFC2045"/>.
+        <xref target="RFC2045"/>.</t>
       </section>
 
       <section title="gss-group15-sha512-*">
-        Each of these methods specifies GSS-API-authenticated Diffie-Hellman
+        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
         key exchange as described in Section 2.1 of <xref target="RFC4462"/>
         with SHA-512 as HASH, and the group defined in Section 5 of <xref
         target="RFC3526"/> The method name for each method is the
         concatenation of the string "gss-group15-sha512-" with the Base64
         encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
-        GSS-API mechanism's OID.
+        GSS-API mechanism's OID.</t>
       </section>
 
       <section title="gss-group16-sha512-*">
-        Each of these methods specifies GSS-API-authenticated Diffie-Hellman
+        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
         key exchange as described in Section 2.1 of <xref target="RFC4462"/>
         with SHA-512 as HASH, and the group defined in Section 5 of <xref
         target="RFC3526"/> The method name for each method is the
         concatenation of the string "gss-group16-sha512-" with the Base64
         encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
-        GSS-API mechanism's OID.
+        GSS-API mechanism's OID.</t>
       </section>
 
       <section title="gss-group17-sha512-*">
-        Each of these methods specifies GSS-API-authenticated Diffie-Hellman
+        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
         key exchange as described in Section 2.1 of <xref target="RFC4462"/>
         with SHA-512 as HASH, and the group defined in Section 5 of <xref
         target="RFC3526"/> The method name for each method is the
         concatenation of the string "gss-group17-sha512-" with the Base64
         encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
-        GSS-API mechanism's OID.
+        GSS-API mechanism's OID.</t>
       </section>
 
       <section title="gss-group18-sha512-*">
-        Each of these methods specifies GSS-API-authenticated Diffie-Hellman
+        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
         key exchange as described in Section 2.1 of <xref target="RFC4462"/>
         with SHA-512 as HASH, and the group defined in Section 7 of <xref
         target="RFC3526"/> The method name for each method is the
         concatenation of the string "gss-group18-sha512-" with the Base64
         encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
-        GSS-API mechanism's OID.
+        GSS-API mechanism's OID.</t>
       </section>
-
     </section>
 
     <section title="New Elliptic Curve Diffie-Hellman Key Exchange methods">
@@ -185,7 +190,7 @@
       Elliptic Curve Cryptography are introduced. We reuse much of section 4
       to implement GSS-API-authenticated ECDH Key Exchanges.</t>
       <t>Additionally we utilize also the curves defined in <xref
-      target="draft-ietf-curdle-ssh-curves-00"/> to complement the 3 classic
+      target="I-D.ietf-curdle-ssh-curves"/> to complement the 3 classic
       NIST defined curves required by <xref target="RFC5656"/>.</t>
 
       <section title="Generic GSS-API Key Exchange with ECDH">
@@ -222,7 +227,7 @@
         GSS-API context support detection of replayed or out-of-sequence
         tokens. Thus, replay_det_req_flag and sequence_req_flag need not be
         set for this process. These flags SHOULD be set to "false".</t>
-        <list>
+        <t><list>
           <t>If the resulting major_status code is GSS_S_COMPLETE and the
           mutual_state flag is not true, then mutual authentication has
           not been established, and the key exchange MUST fail.</t>
@@ -247,14 +252,14 @@
           <t>It is an error if the call does not produce a token of non-
           zero length to be sent to the server. In this case, the key
           exchange MUST fail.</t>
-        </list>
+        </list></t>
 
         <t>3. When a Q_C key is received, S verifies that the key is valid.
         If the key is not valid the key exchange MUST fail.</t>
 
         <t>4. S calls GSS_Accept_sec_context(), using the token received from
         C.</t>
-        <list>
+        <t><list>
           <t>If the resulting major_status code is GSS_S_COMPLETE and the
           mutual_state flag is not true, then mutual authentication has not
           been established, and the key exchange MUST fail.</t>
@@ -275,19 +280,19 @@
           <t>If the resulting major_status code is GSS_S_COMPLETE, but a
           non-zero-length reply token is returned, then that token is sent to
           the client.</t>
-        </list>
+        </list></t>
 
         <t>5. S generates an ephemeral key pair with public key Q_S and performs
-        the following computations:</td>
-        <list>
-          <td>K a shared secret obtained using Q_C and Q_S.</td>
+        the following computations:</t>
+        <t><list>
+          <t>K a shared secret obtained using Q_C and Q_S.</t>
 
-          <td>H = hash(V_C || V_S || I_C || I_S || K_S || Q_C || Q_S ||
-          K).</td>
+          <t>H = hash(V_C || V_S || I_C || I_S || K_S || Q_C || Q_S ||
+          K).</t>
 
-          <td>MIC is the GSS-API message integrity code for H computed by
-          calling GSS_GetMIC().</td>
-        </list>
+          <t>MIC is the GSS-API message integrity code for H computed by
+          calling GSS_GetMIC().</t>
+        </list></t>
 
         <t>6. This step is performed only if the server's final call to
         GSS_Accept_sec_context() produced a non-zero-length final reply
@@ -298,7 +303,7 @@
         This call is made exactly as described above. However, if the
         resulting major_status is anything other than GSS_S_COMPLETE, or a
         non-zero-length token is returned, it is an error and the key exchange
-        MUST fail.</td>
+        MUST fail.</t>
 
         <t>7. C verifies that the key Q_S is valid. If the key is not valid
         the key exchange MUST fail.</t>
@@ -306,16 +311,16 @@
         <t>8. C computes the shared secret K and H the same way it is done in
         step 5. It then calls GSS_VerifyMIC() to check that the MIC sent by S
         verifies H's integrity. If the MIC is not successfully verified, the
-        key exchange MUST fail.</td>
+        key exchange MUST fail.</t>
 
-        <td>If any GSS_Init_sec_context() or GSS_Accept_sec_context() returns
+        <t>If any GSS_Init_sec_context() or GSS_Accept_sec_context() returns
         a major_status other than GSS_S_COMPLETE or GSS_S_CONTINUE_NEEDED, or
         any other GSS-API call returns a major_status other than
         GSS_S_COMPLETE, the key exchange MUST fail. The same recommendations
         expressed in Section 2.1 of <xref target="RFC4462"/> are followed with
-        regards to error reporting.</td>
+        regards to error reporting.</t>
 
-        <td>This excahnge is implemented with the following messages:</td>
+        <t>This excahnge is implemented with the following messages:</t>
         <figure>
           <preamble>The client sends:</preamble>
           <artwork>
@@ -324,31 +329,32 @@
     string    Q_C, client's ephemeral public key octet string
           </artwork>
         </figure>
+        <figure>
           <preamble>The server may responds with:</preamble>
           <artwork>
     byte      SSH_MSG_KEXGSS_HOSTKEY
     string    server public host key and certificates (K_S)
           </artwork>
         </figure>
-        <td>Since this key exchange method does not require the host key to be
+        <t>Since this key exchange method does not require the host key to be
         used for any encryption operations, this message is OPTIONAL. If the
         "null" host key algorithm described in Section 5 of <xref
-        target="RFC4462"/>is used, this message MUST NOT be sent.</td>
-        <td>Each time the server's call to GSS_Accept_sec_context() returns a
-        major_status code of GSS_S_CONTINUE_NEEDED</td>
+        target="RFC4462"/>is used, this message MUST NOT be sent.</t>
+        <t>Each time the server's call to GSS_Accept_sec_context() returns a
+        major_status code of GSS_S_CONTINUE_NEEDED</t>
         <figure>
-          <preamble>The server replies:</td>
+          <preamble>The server replies:</preamble>
           <artwork>
     byte      SSH_MSG_KEXGSS_CONTINUE
     string    output_token (from GSS_Accept_sec_context())
           </artwork>
         </figure>
-        <td>If the client receives this message after a call to
+        <t>If the client receives this message after a call to
         GSS_Init_sec_context() has returned a major_status code of
         GSS_S_COMPLETE, a protocol error has occurred and the key exchange
-        MUST fail.</td>
-        <td>Each time the client receives the message described above, it
-        makes another call to GSS_Init_sec_context().</td>
+        MUST fail.</t>
+        <t>Each time the client receives the message described above, it
+        makes another call to GSS_Init_sec_context().</t>
         <figure>
           <preamble>The client sends:</preamble>
           <artwork>
@@ -356,14 +362,14 @@
     string    output_token (from GSS_Init_sec_context())
           </artwork>
         </figure>
-        <td>The server and client continue to trade these two messages as
+        <t>The server and client continue to trade these two messages as
         long as the server's calls to GSS_Accept_sec_context() result in
         major_status codes of GSS_S_CONTINUE_NEEDED. When a call results in
         a major_status code of GSS_S_COMPLETE, it sends one of two final
-        messages.</td>
-        <td>If the server's final call to GSS_Accept_sec_context() (resulting
+        messages.</t>
+        <t>If the server's final call to GSS_Accept_sec_context() (resulting
         in a major_status code of GSS_S_COMPLETE) returns a non-zero-length
-        token to be sent to the client, it sends the following:</td>
+        token to be sent to the client, it sends the following:</t>
         <figure>
           <artwork>
     byte      SSH_MSG_KEXGSS_COMPLETE
@@ -373,13 +379,13 @@
     string    output_token (from GSS_Accept_sec_context())
           </artwork>
         </figure>
-        <td>If the client receives this message after a call to
+        <t>If the client receives this message after a call to
         GSS_Init_sec_context() has returned a major_status code of
         GSS_S_COMPLETE, a protocol error has occurred and the key exchange
-        MUST fail.</td>
-        <td>If the server's final call to GSS_Accept_sec_context() (resulting
+        MUST fail.</t>
+        <t>If the server's final call to GSS_Accept_sec_context() (resulting
         in a major_status code of GSS_S_COMPLETE) returns a zero-length token
-        or no token at all, it sends the following:</td>
+        or no token at all, it sends the following:</t>
         <figure>
           <artwork>
     byte      SSH_MSG_KEXGSS_COMPLETE
@@ -388,13 +394,13 @@
     boolean   FALSE
           </artwork>
         </figure>
-        <td>If the client receives this message when no call to
+        <t>If the client receives this message when no call to
         GSS_Init_sec_context() has yet resulted in a major_status code of
         GSS_S_COMPLETE, a protocol error has occurred and the key exchange
-        MUST fail.</td>
-        <td>In case of errors the messages described in Section 2.1 of
+        MUST fail.</t>
+        <t>In case of errors the messages described in Section 2.1 of
         <xref target="RFC4462"/> are used as well as the recommendation about
-        the messages' order.</td>
+        the messages' order.</t>
         <figure>
           <preamble>The hash H is computed as the HASH hash of the
           concatenation of the following:</preamble>
@@ -410,20 +416,20 @@
           </artwork>
         </figure>
 
-        <td>This value is called the exchange hash, and it is used to
+        <t>This value is called the exchange hash, and it is used to
         authenticate the key exchange. The exchange hash SHOULD be kept
         secret. If no SSH_MSG_KEXGSS_HOSTKEY message has been sent by the
         server or received by the client, then the empty string is used in
-        place of K_S when computing the exchange hash.</td>
+        place of K_S when computing the exchange hash.</t>
 
-        <td>The GSS_GetMIC call MUST be applied over H, not the original
-        data.</td>
+        <t>The GSS_GetMIC call MUST be applied over H, not the original
+        data.</t>
       </section>
 
-      <figure anchor="figure.ecdh-algs">
+      <section title="ECDH Key Exchange Methods">
+      <texttable>
         <preamble>The following new key exchange methods are defined:
         </preamble>
-        <texttable>
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Implementation Recommendations</ttcol>
           <c>gss-secp256r1-sha256-*</c><c>SHOULD/RECOMMENDED</c>
@@ -431,21 +437,20 @@
           <c>gss-secp521r1-sha512-*</c><c>MAY/OPTIONAL</c>
           <c>gss-curve25519-sha256-*</c><c>SHOULD/RECOMMENDED</c>
           <c>gss-curve448-sha512-*</c><c>MAY/OPTIONAL</c>
-        </texttable>
-      </figure>
+      </texttable>
       <t>Each key exchange method is implicitly registered by this document.
         The IESG is considered to be the owner of all these key exchange
         methods; this does NOT imply that the IESG is considered to be the
         owner of the underlying GSS-API mechanism.</t>
+      </section>
     </section>
 
     <section title="IANA Considerations">
       <t>This document augments the SSH Key Exchange Method Names in <xref
       target="RFC4462"/>.</t>
-      <figure anchor="figure.iana">
+      <texttable>
         <preamble>IANA is requested to update the SSH
         algorithm registry with the following entries:</preamble>
-        <texttable>
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Reference</ttcol>
           <ttcol align="left">Implementation Support</ttcol>
@@ -459,8 +464,7 @@
           <c>gss-secp521r1-sha512-*</c><c>This draft</c><c>MAY</c>
           <c>gss-curve25519-sha256-*</c><c>This draft</c><c>SHOULD</c>
           <c>gss-curve448-sha512-*</c><c>This draft</c><c>MAY</c>
-        </texttable>
-      </figure>
+      </texttable>
     </section>
 
     <section title="Security Considerations">
@@ -485,6 +489,9 @@
 <?rfc rfcedstyle="no"?>
     <references title="Normative References">
 
+      &RFC1321;
+      &RFC2045;
+
       <!--DH GROUPS-->
 
       &RFC3526;
@@ -500,6 +507,11 @@
       <!-- SSH ECC Algorithms -->
 
       &RFC5656;
+
+      &RFC6194;
+
+      &SSHCURVES;
+      &SSHKEXSHA2;
 
       <!--SHA-2-->
 
@@ -533,17 +545,27 @@
         <seriesInfo name="ISO/IEC" value="8825-1"/>
       </reference>
 
+      <reference
+          anchor="NIST-SP-800-131Ar1"
+          target="http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar1.pdf">
+        <front>
+          <title>Transitions: Recommendation for Transitioning of
+          the Use of Cryptographic Algorithms and Key Lengths</title>
+          <author>
+            <organization
+                abbrev="NIST">National Institute of Standards and Technology
+            </organization>
+          </author>
+          <date month="November" year="2015"/>
+        </front>
+        <seriesInfo
+            name="NIST Special Publication"
+            value="800-131A Revision 1"/>
+       </reference>
+
       <!--Key words for use in RFCs to Indicate Requirement Levels-->
 
-      &rfc2119;
-
-      <!--New Key Exchange algorithms draft-->
-
-      &draft-ietf-curdle-ssh-kex-sha2-01;
-
-      <!--Curve25519 and Curve448 ECDH methods -->
-
-      &draft-ietf-curdle-ssh-curves-00;
+      &RFC2119;
 
     </references>
 
