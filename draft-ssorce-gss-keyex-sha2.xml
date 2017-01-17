@@ -320,7 +320,7 @@
         expressed in Section 2.1 of <xref target="RFC4462"/> are followed with
         regards to error reporting.</t>
 
-        <t>This excahnge is implemented with the following messages:</t>
+        <t>This exchange is implemented with the following messages:</t>
         <figure>
           <preamble>The client sends:</preamble>
           <artwork>
@@ -339,7 +339,7 @@
         <t>Since this key exchange method does not require the host key to be
         used for any encryption operations, this message is OPTIONAL. If the
         "null" host key algorithm described in Section 5 of <xref
-        target="RFC4462"/>is used, this message MUST NOT be sent.</t>
+        target="RFC4462"/> is used, this message MUST NOT be sent.</t>
         <t>Each time the server's call to GSS_Accept_sec_context() returns a
         major_status code of GSS_S_CONTINUE_NEEDED</t>
         <figure>
