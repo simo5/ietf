@@ -88,7 +88,7 @@
       GSSAPI for authentication and key exchange in SSH. It defines three
       exchange methods all based on DH groups and SHA-1. The new methods
       described in this document are intended to support environments that
-      desired to use the SHA-2 cryptographic hash functions.</t>
+      desire to use the SHA-2 cryptographic hash functions.</t>
     </section>
 
     <section title="Rationale">
