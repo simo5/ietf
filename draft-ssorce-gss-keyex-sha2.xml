@@ -207,7 +207,43 @@
         <t>Q_S is the server ephemeral public key octet string</t>
 
         <t>The Client:</t>
-        <t>1. C generates an ephemeral key pair with public key Q_C</t>
+        <t>1. C generates an ephemeral key pair with public key Q_C. It does
+            that by:
+          <list>
+            <t>For secp curves:
+              <list>
+                <t>Selecting a value d_C uniformly at random from the interval
+                    [1, n-1] where n is the order of generator of the curve
+                    associated with the selected key exchange method.</t>
+                <t>Performing point multiplication between the curve base point
+                    and selected integer d_C to get the public point q_C.</t>
+                <t>Converts the point q_C to the Q_C octet string by
+                    concatenation of value 0x04 and big-endian representation
+                    of the x coordinate and then y coordinate. The coordinate
+                    coversion MUST preserve leading zero octets. Thus for
+                    secp521r1 curve the encoded x coordinate will always have a
+                    length of 66 octets while the Q_C representation will be
+                    133 octets long. This is the uncompressed representation
+                    specified in Section 4.3.6 of
+                    <xref target="ANSI-X9-62-2005"/>.</t>
+              </list>
+            </t>
+            <t>For curve25519 and curve448:
+                <list>
+                    <t>Selecting d_C as 32 uniformly distributed random octets
+                        for curve25519 and 56 octets for curve448.</t>
+                    <t>Preparing the generator g as the number 9 little-endian
+                        encoded in 32 octets for curve25519 and number
+                        5 in 56 octets for curve448. This is the same as an
+                        octet of value 0x09 followed by 31 zero octets for
+                        curve255519 and as an octect of value 0x05 followed by
+                        55 zero octets.</t>
+                    <t>Calculating Q_C as the result of the call to X25519
+                        or X448 function, respectively for curve25519 and
+                        curve448 key exchange, with parameters d_C and g.</t>
+                </list>
+            </t>
+          </list>
         <t>2. C calls GSS_Init_sec_context(), using the most recent reply
         token received from S during this exchange, if any. For this call,
         the client MUST set mutual_req_flag to "true" to request that mutual
@@ -256,6 +292,36 @@
 
         <t>3. When a Q_C key is received, S verifies that the key is valid.
         If the key is not valid the key exchange MUST fail.</t>
+        </list>
+            <t>The server first checks if the length of the Q_C matches the
+                selected key exchange: 65 octets for secp256r1, 97 octets for
+                secp384r1, 133 octets for secp521r1, 32 octets for curve25519
+                or 56 octets for curve448. If the value does not have matching
+                length the key exchange MUST fail.</t>
+            <t>In case of key exchanges that use secp curves, the server MUST
+                check if the first octet of the Q_C is equal to 0x04.
+                If the octet has different value the key exchange MUST fail.
+            </t>
+            <t>For secp curves, the server converts the octet representation of
+                the key to q_C point representation by interpreting the first
+                half of remaining octets as the unsigned big-endian
+                representation of the x coordinate of the point and the second
+                half as the unsigned big-endian representation of the y
+                coordinate.</t>
+            <t>For secp curves, the server verifies that the q_C is not a point
+                at infinity, that both coordinates are in the interval
+                [0, p - 1], where p is the prime associated with the curve of
+                the selected key exchange and that the point lies on the curve
+                (satisfies the curve equation).</t>
+            <t>For curve25519, the server verifies that the the high-order
+                bit of the last octet is not set - this prevents distinguishing
+                attacks between implementations that use Montgomery ladder
+                implementation of the curve and ones that use generic
+                elliptic-curve libraries. If the bit is set, the key exchange
+                SHOULD fail. For curve448 any bit can be set.</t>
+            <t>For curve25519 and curve448, the point is not decoded but used
+                as is. Q_C and q_C are considered equivalent.
+        </list>
 
         <t>4. S calls GSS_Accept_sec_context(), using the token received from
         C.</t>
@@ -282,10 +348,30 @@
           the client.</t>
         </list></t>
 
-        <t>5. S generates an ephemeral key pair with public key Q_S and performs
-        the following computations:</t>
-        <t><list>
-          <t>K a shared secret obtained using Q_C and Q_S.</t>
+        <t>5. S generates an ephemeral key pair with public key Q_S calculated
+            the same way it is done in step 1 and peforms
+            the following computations:</td>
+        <list>
+          <td>K a shared secret obtained using ECDH key exchange:</td>
+          <list><t>Both client and server perform the same calculation where
+                  d_U is the secret value, d_C for client and d_S for server
+                  and q_V is the received public value, q_S for client and q_C
+                  for server.</t>
+              <t>For secp curves, the peers perform point multiplication using
+                  d_U and q_V to get point P.</t>
+              <t>For secp curves, peers verify that P is not a point at
+                  infinity. If P is a point at infinity, the key exchange
+                  MUST fail.</t>
+              <t>For secp curves, the shared secret is the zero-padded
+                  big-endian representation of the x coordinate of P.</t>
+              <t>For curve25519 and curve448, the peers apply the X25519 or
+                  X448 function, respectively for curve25519 and curve448,
+                  on the d_U and q_V. The result of the function is
+                  the shared secret.</t>
+              <t>For curve25519 and curve448, if all the octets of the shared
+                  secret are zero octets, the key exchange MUST fail.</t>
+          </list>
+
 
           <t>H = hash(V_C || V_S || I_C || I_S || K_S || Q_C || Q_S ||
           K).</t>
@@ -305,7 +391,8 @@
         non-zero-length token is returned, it is an error and the key exchange
         MUST fail.</t>
 
-        <t>7. C verifies that the key Q_S is valid. If the key is not valid
+        <t>7. C verifies that the key Q_S is valid the same way it is done
+        in step 3. If the key is not valid
         the key exchange MUST fail.</t>
 
         <t>8. C computes the shared secret K and H the same way it is done in
@@ -566,6 +653,26 @@
       <!--Key words for use in RFCs to Indicate Requirement Levels-->
 
       &RFC2119;
+
+      <!--ECC specifications-->
+
+      <reference
+          anchor="ANSI-X9-62-2005">
+          <front>
+              <title>Public Key Cryptography for the Financial Services
+                  Industry, The Elliptic Curve Digital Signature Algorithm
+                  (ECDSA)</title>
+              <author>
+                  <organization abbrev="ANSI">American National Standards
+                      Institute
+                  </organization>
+              </author>
+              <date year="2005"/>
+          </front>
+          <seriesInfo
+              name="ANSI Standard"
+              value="X9.62"/>
+      </reference>
 
     </references>
 
