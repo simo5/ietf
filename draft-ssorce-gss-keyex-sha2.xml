@@ -88,7 +88,7 @@
       GSSAPI for authentication and key exchange in SSH. It defines three
       exchange methods all based on DH groups and SHA-1. The new methods
       described in this document are intended to support environments that
-      desired to use the SHA-2 cryptographic hash functions.</t>
+      desire to use the SHA-2 cryptographic hash functions.</t>
     </section>
 
     <section title="Rationale">
@@ -147,7 +147,7 @@
       <section title="gss-group15-sha512-*">
         <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
         key exchange as described in Section 2.1 of <xref target="RFC4462"/>
-        with SHA-512 as HASH, and the group defined in Section 5 of <xref
+        with SHA-512 as HASH, and the group defined in Section 4 of <xref
         target="RFC3526"/> The method name for each method is the
         concatenation of the string "gss-group15-sha512-" with the Base64
         encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
@@ -167,7 +167,7 @@
       <section title="gss-group17-sha512-*">
         <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
         key exchange as described in Section 2.1 of <xref target="RFC4462"/>
-        with SHA-512 as HASH, and the group defined in Section 5 of <xref
+        with SHA-512 as HASH, and the group defined in Section 6 of <xref
         target="RFC3526"/> The method name for each method is the
         concatenation of the string "gss-group17-sha512-" with the Base64
         encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
