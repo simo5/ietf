@@ -100,7 +100,7 @@
       NIST P-256, P-384 and P-521 as well as X25519 and X448 curves.
       Following the rationale of <xref
       target="I-D.ietf-curdle-ssh-kex-sha2"/> only SHA-256 and SHA-512
-      hashes are used.</t>
+      hashes are used for any new key exchange methods.</t>
     </section>
 
     <section title="Document Conventions">
@@ -520,7 +520,7 @@
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Implementation Recommendations</ttcol>
           <c>gss-secp256r1-sha256-*</c><c>SHOULD/RECOMMENDED</c>
-          <c>gss-secp384r1-sha512-*</c><c>MAY/OPTIONAL</c>
+          <c>gss-secp384r1-sha384-*</c><c>MAY/OPTIONAL</c>
           <c>gss-secp521r1-sha512-*</c><c>MAY/OPTIONAL</c>
           <c>gss-curve25519-sha256-*</c><c>SHOULD/RECOMMENDED</c>
           <c>gss-curve448-sha512-*</c><c>MAY/OPTIONAL</c>
@@ -547,7 +547,7 @@
           <c>gss-group17-sha512-*</c><c>This draft</c><c>MAY</c>
           <c>gss-group18-sha512-*</c><c>This draft</c><c>MAY</c>
           <c>gss-secp256r1-sha256-*</c><c>This draft</c><c>SHOULD</c>
-          <c>gss-secp384r1-sha512-*</c><c>This draft</c><c>MAY</c>
+          <c>gss-secp384r1-sha384-*</c><c>This draft</c><c>MAY</c>
           <c>gss-secp521r1-sha512-*</c><c>This draft</c><c>MAY</c>
           <c>gss-curve25519-sha256-*</c><c>This draft</c><c>SHOULD</c>
           <c>gss-curve448-sha512-*</c><c>This draft</c><c>MAY</c>
