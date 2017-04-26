@@ -100,7 +100,9 @@
       NIST P-256, P-384 and P-521 as well as X25519 and X448 curves.
       Following the rationale of <xref
       target="I-D.ietf-curdle-ssh-modp-dh-sha2"/> only SHA-256 and SHA-512
-      hashes are used for DH groups.</t>
+      hashes are used for DH groups. For NIST curves the same curve-to-hashing
+      algorithm pairing used in <xref target="RFC5656"/> is adopted for
+      consistency.</t>
     </section>
 
     <section title="Document Conventions">
@@ -520,7 +522,7 @@
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Implementation Recommendations</ttcol>
           <c>gss-nistp256-sha256-*</c><c>SHOULD/RECOMMENDED</c>
-          <c>gss-nistp384-sha512-*</c><c>MAY/OPTIONAL</c>
+          <c>gss-nistp384-sha384-*</c><c>MAY/OPTIONAL</c>
           <c>gss-nistp521-sha512-*</c><c>MAY/OPTIONAL</c>
           <c>gss-curve25519-sha256-*</c><c>SHOULD/RECOMMENDED</c>
           <c>gss-curve448-sha512-*</c><c>MAY/OPTIONAL</c>
@@ -547,7 +549,7 @@
           <c>gss-group17-sha512-*</c><c>This draft</c><c>MAY</c>
           <c>gss-group18-sha512-*</c><c>This draft</c><c>MAY</c>
           <c>gss-nistp256-sha256-*</c><c>This draft</c><c>SHOULD</c>
-          <c>gss-nistp384-sha512-*</c><c>This draft</c><c>MAY</c>
+          <c>gss-nistp384-sha384-*</c><c>This draft</c><c>MAY</c>
           <c>gss-nistp521-sha512-*</c><c>This draft</c><c>MAY</c>
           <c>gss-curve25519-sha256-*</c><c>This draft</c><c>SHOULD</c>
           <c>gss-curve448-sha512-*</c><c>This draft</c><c>MAY</c>
