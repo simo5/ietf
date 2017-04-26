@@ -10,7 +10,7 @@
 <!ENTITY RFC6194 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6194.xml">
 <!ENTITY RFC7546 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7546.xml">
 <!ENTITY SSHCURVES PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-curves-00.xml'>
-<!ENTITY SSHKEXSHA2 PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-kex-sha2-05.xml'>
+<!ENTITY SSHMODPDHSHA2 PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-modp-dh-sha2-04.xml'>
 ]>
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt"?>
 
@@ -100,8 +100,8 @@
       add support for key exchange based on Elliptic Curve Diffie Hellman with
       NIST P-256, P-384 and P-521 as well as X25519 and X448 curves.
       Following the rationale of <xref
-      target="I-D.ietf-curdle-ssh-kex-sha2"/> only SHA-256 and SHA-512
-      hashes are used.</t>
+      target="I-D.ietf-curdle-ssh-modp-dh-sha2"/> only SHA-256 and SHA-512
+      hashes are used for DH groups.</t>
     </section>
 
     <section title="Document Conventions">
@@ -606,7 +606,7 @@
       &RFC7546;
 
       &SSHCURVES;
-      &SSHKEXSHA2;
+      &SSHMODPDHSHA2;
 
       <!--SHA-2-->
 
