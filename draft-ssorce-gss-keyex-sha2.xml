@@ -253,6 +253,7 @@
                 </list>
             </t>
           </list>
+        </t>
         <t>2. C calls GSS_Init_sec_context(), using the most recent reply
         token received from S during this exchange, if any. For this call,
         the client MUST set mutual_req_flag to "true" to request that mutual
@@ -301,7 +302,7 @@
 
         <t>3. When a Q_C key is received, S verifies that the key is valid.
         If the key is not valid the key exchange MUST fail.</t>
-        </list>
+        <t><list>
             <t>The server first checks if the length of the Q_C matches the
                 selected key exchange: 65 octets for nistp256, 97 octets for
                 nistp384, 133 octets for nistp521, 32 octets for curve25519
@@ -329,8 +330,8 @@
                 elliptic-curve libraries. If the bit is set, the key exchange
                 SHOULD fail. For curve448 any bit can be set.</t>
             <t>For curve25519 and curve448, the point is not decoded but used
-                as is. Q_C and q_C are considered equivalent.
-        </list>
+                as is. Q_C and q_C are considered equivalent.</t>
+        </list></t>
 
         <t>4. S calls GSS_Accept_sec_context(), using the token received from
         C.</t>
@@ -359,9 +360,10 @@
 
         <t>5. S generates an ephemeral key pair with public key Q_S calculated
             the same way it is done in step 1 and peforms
-            the following computations:</td>
-        <list>
-          <td>K a shared secret obtained using ECDH key exchange:</td>
+            the following computations:</t>
+        <t><list>
+          <t>K a shared secret obtained using ECDH key exchange:</t>
+          <t>
           <list><t>Both client and server perform the same calculation where
                   d_U is the secret value, d_C for client and d_S for server
                   and q_V is the received public value, q_S for client and q_C
@@ -380,14 +382,15 @@
               <t>For curve25519 and curve448, if all the octets of the shared
                   secret are zero octets, the key exchange MUST fail.</t>
           </list>
-
+         </t>
 
           <t>H = hash(V_C || V_S || I_C || I_S || K_S || Q_C || Q_S ||
           K).</t>
 
           <t>MIC is the GSS-API message integrity code for H computed by
           calling GSS_GetMIC().</t>
-        </list></t>
+        </list>
+        </t>
 
         <t>6. This step is performed only if the server's final call to
         GSS_Accept_sec_context() produced a non-zero-length final reply
@@ -761,12 +764,13 @@
           <front>
               <title>SEC 2: Recommended Elliptic Curve Domain Parameters</title>
               <author>
-                  <organisation>Certicom Research</organization>
+                  <organization>Certicom Research</organization>
               </author>
               <date year="2010"/>
           </front>
           <seriesInfo
-              name="Standards for Efficient Cryptography"/>
+              name="Standards for Efficient Cryptography"
+              value="SEC 2"/>
       </reference>
     </references>
 
