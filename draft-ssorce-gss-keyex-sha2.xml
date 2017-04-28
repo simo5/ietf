@@ -9,6 +9,7 @@
 <!ENTITY RFC5656 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5656.xml">
 <!ENTITY RFC6194 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6194.xml">
 <!ENTITY RFC7546 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7546.xml">
+<!ENTITY RFC7748 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7748.xml">
 <!ENTITY SSHCURVES PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-curves-04.xml'>
 <!ENTITY SSHMODPDHSHA2 PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-modp-dh-sha2-04.xml'>
 ]>
@@ -196,7 +197,7 @@
       target="I-D.ietf-curdle-ssh-curves"/> to complement the 3 classic
       NIST defined curves required by <xref target="RFC5656"/>.</t>
 
-      <section title="Generic GSS-API Key Exchange with ECDH">
+      <section title="Generic GSS-API Key Exchange with ECDH" anchor="gen_gss_ecdh">
         <t>This section reuses much of the scheme defined in Section 2.1 of
         <xref target="RFC4462"/> and combines it with the scheme defined in
         Section 4 of <xref target="RFC5656"/>; in particular, all checks and
@@ -537,6 +538,75 @@
         The IESG is considered to be the owner of all these key exchange
         methods; this does NOT imply that the IESG is considered to be the
         owner of the underlying GSS-API mechanism.</t>
+        <section title="gss-nistp256-sha256-*">
+            <t>Each of these methods specifies GSS-API-authenticated Elliptic
+                Curve Diffie-Hellman key exchange as described in
+                <xref target="gen_gss_ecdh"/>
+                of this document with SHA-256 as HASH, and the curve and base
+                point defined in section 2.4.2 of <xref target="SEC2v2"/> as
+                secp256r1. The method name for each method is the concatenation
+                of the string "gss-nistp256-sha256-" with the Base64 encoding
+                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
+                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
+                GSS-API mechanism's OID. Base64 encoding is described in
+                Section 6.8 of <xref target="RFC2045"/>.</t>
+        </section>
+
+        <section title="gss-nistp384-sha384-*">
+            <t>Each of these methods specifies GSS-API-authenticated Elliptic
+                Curve Diffie-Hellman key exchange as described in
+                <xref target="gen_gss_ecdh"/>
+                of this document with SHA-384 as HASH, and the curve and base
+                point defined in section 2.5.1 of <xref target="SEC2v2"/> as
+                secp384r1. The method name for each method is the concatenation
+                of the string "gss-nistp384-sha384-" with the Base64 encoding
+                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
+                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
+                GSS-API mechanism's OID. Base64 encoding is described in
+                Section 6.8 of <xref target="RFC2045"/>.</t>
+        </section>
+
+        <section title="gss-nistp521-sha512-*">
+            <t>Each of these methods specifies GSS-API-authenticated Elliptic
+                Curve Diffie-Hellman key exchange as described in
+                <xref target="gen_gss_ecdh"/>
+                of this document with SHA-512 as HASH, and the curve and base
+                point defined in section 2.6.1 of <xref target="SEC2v2"/> as
+                secp521r1. The method name for each method is the concatenation
+                of the string "gss-nistp521-sha512-" with the Base64 encoding
+                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
+                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
+                GSS-API mechanism's OID. Base64 encoding is described in
+                Section 6.8 of <xref target="RFC2045"/>.</t>
+        </section>
+
+        <section title="gss-curve25519-sha256-*">
+            <t>Each of these methods specifies GSS-API-authenticated Elliptic
+                Curve Diffie-Hellman key exchange as described in
+                <xref target="gen_gss_ecdh"/>
+                of this document with SHA-256 as HASH, and the X25519 function
+                defined in section 5 of <xref target="RFC7748"/>. The method
+                name for each method is the concatenation
+                of the string "gss-curve25519-sha256-" with the Base64 encoding
+                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
+                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
+                GSS-API mechanism's OID. Base64 encoding is described in
+                Section 6.8 of <xref target="RFC2045"/>.</t>
+        </section>
+
+        <section title="gss-curve448-sha512-*">
+            <t>Each of these methods specifies GSS-API-authenticated Elliptic
+                Curve Diffie-Hellman key exchange as described in
+                <xref target="gen_gss_ecdh"/>
+                of this document with SHA-512 as HASH, and the X448 function
+                defined in section 5 of <xref target="RFC7748"/>. The method
+                name for each method is the concatenation
+                of the string "gss-curve448-sha512-" with the Base64 encoding
+                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
+                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
+                GSS-API mechanism's OID. Base64 encoding is described in
+                Section 6.8 of <xref target="RFC2045"/>.</t>
+        </section>
       </section>
     </section>
 
@@ -609,6 +679,8 @@
 
       &SSHCURVES;
       &SSHMODPDHSHA2;
+
+      &RFC7748;
 
       <!--SHA-2-->
 
@@ -684,6 +756,18 @@
               value="X9.62"/>
       </reference>
 
+      <reference
+          anchor="SEC2v2">
+          <front>
+              <title>SEC 2: Recommended Elliptic Curve Domain Parameters</title>
+              <author>
+                  <organisation>Certicom Research</organization>
+              </author>
+              <date year="2010"/>
+          </front>
+          <seriesInfo
+              name="Standards for Efficient Cryptography"/>
+      </reference>
     </references>
 
   </back>
