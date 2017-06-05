@@ -295,9 +295,9 @@
           receives more than one Q_C or none at all, the key exchange
           MUST fail.</t>
 
-          <t>It is an error if the call does not produce a token of non-
-          zero length to be sent to the server. In this case, the key
-          exchange MUST fail.</t>
+          <t>It is an error if the call does not produce a token of non-zero
+          length to be sent to the server. In this case, the key exchange
+          MUST fail.</t>
         </list></t>
 
         <t>3. When a Q_C key is received, S verifies that the key is valid.
@@ -505,7 +505,7 @@
           concatenation of the following:</preamble>
           <artwork>
     string    V_C, the client's version string (CR, NL excluded)
-    string    V_S, server's identification string (CR and LF excluded)
+    string    V_S, server's version string (CR, NL excluded)
     string    I_C, payload of the client's SSH_MSG_KEXINIT
     string    I_S, payload of the server's SSH_MSG_KEXINIT
     string    K_S, server's public host key
