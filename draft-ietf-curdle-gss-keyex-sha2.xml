@@ -24,7 +24,7 @@
 <?rfc autobreaks="yes"?>
 <?rfc docmapping="yes"?>
 
-<rfc category="std" docName="draft-ietf-curdle-gss-keyex-sha2-01"
+<rfc category="std" docName="draft-ietf-curdle-gss-keyex-sha2-02"
      ipr="trust200902" updates="4462">
   <front>
     <title abbrev="GSS Keyex SHA2">GSS-API Key Exchange with SHA2</title>
@@ -648,6 +648,17 @@
         <xref target="RFC5656"/>; therefore all the original Security
         Considerations as well as those expressed in <xref target="RFC5656"/>
         apply.</t>
+      </section>
+      <section title="GSSAPI Delegation">
+        <t>Some GSSAPI mechanisms can optionally delegate credentials to the
+        target host by setting the deleg_ret_flag. In this case extra care
+        must be taken to ensure that the acceptor being authenticated matches
+        the target the user intended. Some mechanisms implementations (like
+        commonly used krb5 libraries) may use insecure DNS resolution to
+        canonicalize the target name; in these cases spoofing a DNS response
+        that points to an attacker-controlled machine may results in the user
+        silently delegating credentials to the attacker, who can then
+        impersonate the user at will.</t>
       </section>
     </section>
 
