@@ -389,6 +389,8 @@
 
           <t>MIC is the GSS-API message integrity code for H computed by
           calling GSS_GetMIC().</t>
+
+          <t>S then sends Q_S and the message integrity code (MIC) to C.</t>
         </list>
         </t>
 
