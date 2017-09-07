@@ -409,7 +409,8 @@
         in step 3. If the key is not valid
         the key exchange MUST fail.</t>
 
-        <t>8. C computes the shared secret K and H the same way it is done in
+        <t>8. C computes the shared secret K and H and verifies that it is valid
+        the same way it is done in
         step 5. It then calls GSS_VerifyMIC() to check that the MIC sent by S
         verifies H's integrity. If the MIC is not successfully verified, the
         key exchange MUST fail.</t>
