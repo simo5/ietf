@@ -10,8 +10,8 @@
 <!ENTITY RFC6194 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6194.xml">
 <!ENTITY RFC7546 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7546.xml">
 <!ENTITY RFC7748 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7748.xml">
-<!ENTITY SSHCURVES PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-curves-04.xml'>
-<!ENTITY SSHMODPDHSHA2 PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-modp-dh-sha2-04.xml'>
+<!ENTITY RFC8268 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8268.xml">
+<!ENTITY SSHCURVES PUBLIC '' 'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-curdle-ssh-curves-07.xml'>
 ]>
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt"?>
 
@@ -69,17 +69,17 @@
       </address>
     </author>
 
-    <date month="Dec" year="2017" />
+    <date month="Jan" year="2018" />
 
     <area>Security</area>
 
     <workgroup>Internet Engineering Task Force</workgroup>
 
     <abstract>
-      <t>This document specifies additions and amendments to <xref target="RFC4462">SSH
-      GSS-API Methods</xref>. It defines a new key exchange method that uses SHA-2 for
-      integrity and deprecates weak DH groups. The purpose of this specification is to
-      modernize the cryptographic primitives used by GSS Key Exchanges.</t>
+      <t>This document specifies additions and amendments to RFC446. It defines
+      a new key exchange method that uses SHA-2 for integrity and deprecates
+      weak DH groups. The purpose of this specification is to modernize the
+      cryptographic primitives used by GSS Key Exchanges.</t>
     </abstract>
   </front>
 
@@ -100,11 +100,10 @@
       group16, group17 and group18 <xref target="RFC3526"/>. Additionally we
       add support for key exchange based on Elliptic Curve Diffie Hellman with
       NIST P-256, P-384 and P-521 as well as X25519 and X448 curves.
-      Following the rationale of <xref
-      target="I-D.ietf-curdle-ssh-modp-dh-sha2"/> only SHA-256 and SHA-512
-      hashes are used for DH groups. For NIST curves the same curve-to-hashing
-      algorithm pairing used in <xref target="RFC5656"/> is adopted for
-      consistency.</t>
+      Following the rationale of <xref target="RFC8268"/> only SHA-256 and
+      SHA-512 hashes are used for DH groups. For NIST curves the same
+      curve-to-hashing algorithm pairing used in <xref target="RFC5656"/> is
+      adopted for consistency.</t>
     </section>
 
     <section title="Document Conventions">
@@ -406,14 +405,13 @@
         MUST fail.</t>
 
         <t>7. C verifies that the key Q_S is valid the same way it is done
-        in step 3. If the key is not valid
-        the key exchange MUST fail.</t>
+        in step 3. If the key is not valid the key exchange MUST fail.</t>
 
-        <t>8. C computes the shared secret K and H and verifies that it is valid
-        the same way it is done in
-        step 5. It then calls GSS_VerifyMIC() to check that the MIC sent by S
-        verifies H's integrity. If the MIC is not successfully verified, the
-        key exchange MUST fail.</t>
+        <t>8. C computes the shared secret K and H and verifies that it is
+        valid the same way it is done in step 5. It then calls
+        GSS_VerifyMIC() to check that the MIC sent by S verifies H's
+        integrity. If the MIC is not successfully verified, the key exchange
+        MUST fail.</t>
 
         <t>If any GSS_Init_sec_context() or GSS_Accept_sec_context() returns
         a major_status other than GSS_S_COMPLETE or GSS_S_CONTINUE_NEEDED, or
@@ -690,64 +688,11 @@
 
       &RFC5656;
 
-      &RFC6194;
-
       &RFC7546;
 
       &SSHCURVES;
-      &SSHMODPDHSHA2;
 
       &RFC7748;
-
-      <!--SHA-2-->
-
-      <reference
-          anchor="FIPS-180-4"
-          target="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">
-        <front>
-          <title>FIPS PUB 180-4: Secure Hash Standard (SHS)</title>
-          <author>
-            <organization>National Institute of Standards and Technology
-            </organization>
-          </author>
-          <date month="August" year="2015"/>
-        </front>
-        <seriesInfo name="FIPS PUB" value="180-4"/>
-       </reference>
-
-      <reference
-          anchor="ISO-IEC-8825-1"
-          target="http://standards.iso.org/ittf/PubliclyAvailableStandards/c068345_ISO_IEC_8825-1_2015.zip">
-        <front>
-          <title>ASN.1 encoding rules: Specification of Basic Encoding Rules
-          (BER), Canonical Encoding Rules (CER) and Distinguished Encoding
-          Rules (DER)</title>
-          <author>
-            <organization>International Organization for Standardization /
-            International Electrotechnical Commission</organization>
-          </author>
-          <date day="15" month="November" year="2015"/>
-        </front>
-        <seriesInfo name="ISO/IEC" value="8825-1"/>
-      </reference>
-
-      <reference
-          anchor="NIST-SP-800-131Ar1"
-          target="http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar1.pdf">
-        <front>
-          <title>Transitions: Recommendation for Transitioning of
-          the Use of Cryptographic Algorithms and Key Lengths</title>
-          <author>
-            <organization
-                abbrev="NIST">National Institute of Standards and Technology
-            </organization>
-          </author>
-          <date month="November" year="2015"/>
-        </front>
-        <seriesInfo
-            name="NIST Special Publication"
-            value="800-131A Revision 1"/>
-       </reference>
 
       <!--Key words for use in RFCs to Indicate Requirement Levels-->
 
@@ -786,6 +731,49 @@
               name="Standards for Efficient Cryptography"
               value="SEC 2"/>
       </reference>
+    </references>
+
+    <references title="Informative References">
+
+      &RFC6194;
+
+      &RFC8268;
+
+      <!--SHA-2-->
+
+      <reference
+          anchor="ISO-IEC-8825-1"
+          target="http://standards.iso.org/ittf/PubliclyAvailableStandards/c068345_ISO_IEC_8825-1_2015.zip">
+        <front>
+          <title>ASN.1 encoding rules: Specification of Basic Encoding Rules
+          (BER), Canonical Encoding Rules (CER) and Distinguished Encoding
+          Rules (DER)</title>
+          <author>
+            <organization>International Organization for Standardization /
+            International Electrotechnical Commission</organization>
+          </author>
+          <date day="15" month="November" year="2015"/>
+        </front>
+        <seriesInfo name="ISO/IEC" value="8825-1"/>
+      </reference>
+
+      <reference
+          anchor="NIST-SP-800-131Ar1"
+          target="http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar1.pdf">
+        <front>
+          <title>Transitions: Recommendation for Transitioning of
+          the Use of Cryptographic Algorithms and Key Lengths</title>
+          <author>
+            <organization
+                abbrev="NIST">National Institute of Standards and Technology
+            </organization>
+          </author>
+          <date month="November" year="2015"/>
+        </front>
+        <seriesInfo
+            name="NIST Special Publication"
+            value="800-131A Revision 1"/>
+       </reference>
     </references>
 
   </back>
