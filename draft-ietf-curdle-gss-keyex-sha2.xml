@@ -373,7 +373,9 @@
                   infinity. If P is a point at infinity, the key exchange
                   MUST fail.</t>
               <t>For NIST curves, the shared secret is the zero-padded
-                  big-endian representation of the x coordinate of P.</t>
+                  big-endian representation of the x coordinate of P -
+                  32 octets long for nistp256, 48 octets for nistp384 and 64
+                  octets long for nistp521.</t>
               <t>For curve25519 and curve448, the peers apply the X25519 or
                   X448 function, respectively for curve25519 and curve448,
                   on the d_U and q_V. The result of the function is
