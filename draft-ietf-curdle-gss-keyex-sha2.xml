@@ -24,7 +24,7 @@
 <?rfc autobreaks="yes"?>
 <?rfc docmapping="yes"?>
 
-<rfc category="std" docName="draft-ietf-curdle-gss-keyex-sha2-04"
+<rfc category="std" docName="draft-ietf-curdle-gss-keyex-sha2-05"
      ipr="trust200902" updates="4462">
   <front>
     <title abbrev="GSS Keyex SHA2">GSS-API Key Exchange with SHA2</title>
@@ -69,7 +69,7 @@
       </address>
     </author>
 
-    <date month="Jan" year="2018" />
+    <date month="Feb" year="2018" />
 
     <area>Security</area>
 
