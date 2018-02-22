@@ -618,8 +618,9 @@
       <t>This document augments the SSH Key Exchange Method Names in <xref
       target="RFC4462"/>.</t>
       <texttable>
-        <preamble>IANA is requested to update the SSH
-        algorithm registry with the following entries:</preamble>
+        <preamble>IANA is requested to update the <xref
+        target="IANA-KEX-NAMES">SSH Protocol Parameters</xref> registry
+        with the following entries:</preamble>
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Reference</ttcol>
           <ttcol align="left">Implementation Support</ttcol>
@@ -774,6 +775,20 @@
             name="NIST Special Publication"
             value="800-131A Revision 1"/>
        </reference>
+
+      <reference
+          anchor="IANA-KEX-NAMES"
+          target="https://www.iana.org/assignments/ssh-parameters/ssh-parameters.xhtml#ssh-parameters-16">
+        <front>
+          <title> Secure Shell (SSH) Protocol Parameters: Key Exchange Method Names</title>
+          <author>
+            <organization
+                abbrev="IANA">Internet Assigned Numbers Authority
+            </organization>
+          </author>
+          <date day="2" month="June" year="2005"/>
+        </front>
+      </reference>
     </references>
 
   </back>
