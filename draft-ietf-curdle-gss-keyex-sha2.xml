@@ -88,8 +88,8 @@
     <section title="Introduction">
       <t><xref target="RFC4462">SSH GSS-API Methods</xref> allows the use of
       GSSAPI for authentication and key exchange in SSH. It defines three
-      exchange methods all based on DH groups and SHA-1. The new methods
-      described in this document are intended to support environments that
+      exchange methods all based on DH groups and SHA-1. This document
+      updates RFC4462 with new methods intended to support environments that
       desire to use the SHA-2 cryptographic hash functions.</t>
     </section>
 
