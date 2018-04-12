@@ -191,7 +191,7 @@
     <section title="New Elliptic Curve Diffie-Hellman Key Exchange methods">
       <t>In <xref target="RFC5656"/> new SSH key exchange algorithms based on
       Elliptic Curve Cryptography are introduced. We reuse much of section 4
-      to implement GSS-API-authenticated ECDH Key Exchanges.</t>
+      to define GSS-API-authenticated ECDH Key Exchanges.</t>
       <t>Additionally we utilize also the curves defined in <xref
       target="I-D.ietf-curdle-ssh-curves"/> to complement the 3 classic
       NIST defined curves required by <xref target="RFC5656"/>.</t>
