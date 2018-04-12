@@ -99,7 +99,7 @@
       we propose the use of the SHA-2 based hashes with DH group14, group15,
       group16, group17 and group18 <xref target="RFC3526"/>. Additionally we
       add support for key exchange based on Elliptic Curve Diffie Hellman with
-      NIST P-256, P-384 and P-521 as well as the X25519 and X448 curves.
+      the NIST P-256, P-384 and P-521 as well as the X25519 and X448 curves.
       Following the rationale of <xref target="RFC8268"/> only SHA-256 and
       SHA-512 hashes are used for DH groups. For NIST curves the same
       curve-to-hashing algorithm pairing used in <xref target="RFC5656"/> is
