@@ -387,6 +387,9 @@
           </list>
          </t>
 
+          <t>To verify integrity of the hanshake, peers use the HASH to
+             calculate H:</t>
+
           <t>H = hash(V_C || V_S || I_C || I_S || K_S || Q_C || Q_S ||
           K).</t>
 
