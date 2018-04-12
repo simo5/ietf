@@ -321,7 +321,9 @@
                 at infinity, that both coordinates are in the interval
                 [0, p - 1], where p is the prime associated with the curve of
                 the selected key exchange and that the point lies on the curve
-                (satisfies the curve equation).</t>
+                (satisfies the curve equation). See
+                <xref target="ANSI-X9-62-2005"/> for detailed description and
+                rationale.</t>
             <t>For curve25519, the server verifies that the the high-order
                 bit of the last octet is not set - this prevents distinguishing
                 attacks between implementations that use Montgomery ladder
