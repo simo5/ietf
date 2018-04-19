@@ -8,6 +8,7 @@
 <!ENTITY RFC4462 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4462.xml">
 <!ENTITY RFC5656 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5656.xml">
 <!ENTITY RFC6194 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6194.xml">
+<!ENTITY RFC6234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6234.xml">
 <!ENTITY RFC7546 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7546.xml">
 <!ENTITY RFC7748 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7748.xml">
 <!ENTITY RFC8268 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8268.xml">
@@ -96,10 +97,11 @@
     <section title="Rationale">
       <t>Due to security concerns with SHA-1 <xref target="RFC6194"/> and with
       MODP groups with less than 2048 bits <xref target="NIST-SP-800-131Ar1"/>
-      we propose the use of the SHA-2 based hashes with DH group14, group15,
+      we propose the use of the SHA-2 <xref target="RFC6234"/> based hashes
+      with DH group14, group15,
       group16, group17 and group18 <xref target="RFC3526"/>. Additionally we
       add support for key exchange based on Elliptic Curve Diffie Hellman with
-      NIST P-256, P-384 and P-521 as well as X25519 and X448 curves.
+      the NIST P-256, P-384 and P-521 as well as the X25519 and X448 curves.
       Following the rationale of <xref target="RFC8268"/> only SHA-256 and
       SHA-512 hashes are used for DH groups. For NIST curves the same
       curve-to-hashing algorithm pairing used in <xref target="RFC5656"/> is
@@ -191,7 +193,7 @@
     <section title="New Elliptic Curve Diffie-Hellman Key Exchange methods">
       <t>In <xref target="RFC5656"/> new SSH key exchange algorithms based on
       Elliptic Curve Cryptography are introduced. We reuse much of section 4
-      to implement GSS-API-authenticated ECDH Key Exchanges.</t>
+      to define GSS-API-authenticated ECDH Key Exchanges.</t>
       <t>Additionally we utilize also the curves defined in <xref
       target="I-D.ietf-curdle-ssh-curves"/> to complement the 3 classic
       NIST defined curves required by <xref target="RFC5656"/>.</t>
@@ -321,7 +323,9 @@
                 at infinity, that both coordinates are in the interval
                 [0, p - 1], where p is the prime associated with the curve of
                 the selected key exchange and that the point lies on the curve
-                (satisfies the curve equation).</t>
+                (satisfies the curve equation). See
+                <xref target="ANSI-X9-62-2005"/> for detailed description and
+                rationale.</t>
             <t>For curve25519, the server verifies that the the high-order
                 bit of the last octet is not set - this prevents distinguishing
                 attacks between implementations that use Montgomery ladder
@@ -384,6 +388,9 @@
                   secret are zero octets, the key exchange MUST fail.</t>
           </list>
          </t>
+
+          <t>To verify integrity of the hanshake, peers use the HASH to
+             calculate H:</t>
 
           <t>H = hash(V_C || V_S || I_C || I_S || K_S || Q_C || Q_S ||
           K).</t>
@@ -743,6 +750,8 @@
       &RFC8268;
 
       <!--SHA-2-->
+
+      &RFC6234;
 
       <reference
           anchor="ISO-IEC-8825-1"
