@@ -4,7 +4,6 @@
 <!ENTITY RFC2045 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2045.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC3526 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3526.xml">
-<!ENTITY RFC4253 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4253.xml">
 <!ENTITY RFC4462 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4462.xml">
 <!ENTITY RFC5656 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5656.xml">
 <!ENTITY RFC6194 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6194.xml">
@@ -137,57 +136,32 @@
         methods; this does NOT imply that the IESG is considered to be the
         owner of the underlying GSS-API mechanism.
       </t>
-      <section title="gss-group14-sha256-*">
-        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
-        key exchange as described in Section 2.1 of <xref target="RFC4462"/>
-        with SHA-256 as HASH, and the group defined in Section 8.2 of <xref
-        target="RFC4253"/> The method name for each method is the
-        concatenation of the string "gss-group14-sha256-" with the Base64
-        encoding of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
-        encoding <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
+      <t>
+        Each method in any family of methods specifies GSS-API-authenticated
+        Diffie-Hellman key exchanges as described in Section 2.1 of <xref
+        target="RFC4462"/>. The method name for each method is the
+        concatenation of the family method name with the Base64 encoding of
+        the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER encoding
+        <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
         mechanism's OID. Base64 encoding is described in Section 6.8 of
         <xref target="RFC2045"/>.</t>
-      </section>
-
-      <section title="gss-group15-sha512-*">
-        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
-        key exchange as described in Section 2.1 of <xref target="RFC4462"/>
-        with SHA-512 as HASH, and the group defined in Section 4 of <xref
-        target="RFC3526"/> The method name for each method is the
-        concatenation of the string "gss-group15-sha512-" with the Base64
-        encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
-        GSS-API mechanism's OID.</t>
-      </section>
-
-      <section title="gss-group16-sha512-*">
-        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
-        key exchange as described in Section 2.1 of <xref target="RFC4462"/>
-        with SHA-512 as HASH, and the group defined in Section 5 of <xref
-        target="RFC3526"/> The method name for each method is the
-        concatenation of the string "gss-group16-sha512-" with the Base64
-        encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
-        GSS-API mechanism's OID.</t>
-      </section>
-
-      <section title="gss-group17-sha512-*">
-        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
-        key exchange as described in Section 2.1 of <xref target="RFC4462"/>
-        with SHA-512 as HASH, and the group defined in Section 6 of <xref
-        target="RFC3526"/> The method name for each method is the
-        concatenation of the string "gss-group17-sha512-" with the Base64
-        encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
-        GSS-API mechanism's OID.</t>
-      </section>
-
-      <section title="gss-group18-sha512-*">
-        <t>Each of these methods specifies GSS-API-authenticated Diffie-Hellman
-        key exchange as described in Section 2.1 of <xref target="RFC4462"/>
-        with SHA-512 as HASH, and the group defined in Section 7 of <xref
-        target="RFC3526"/> The method name for each method is the
-        concatenation of the string "gss-group18-sha512-" with the Base64
-        encoding of the MD5 hash of the ASN.1 DER encoding of the underlying
-        GSS-API mechanism's OID.</t>
-      </section>
+      <texttable>
+        <preamble>Family method refences</preamble>
+          <ttcol align="left">Family Name prefix</ttcol>
+          <ttcol align="left">Hash Function</ttcol>
+          <ttcol align="left">Group </ttcol>
+          <ttcol align="left">Reference</ttcol>
+          <c>gss-group14-sha256-</c><c>SHA-256</c><c>2048-bit MODP</c>
+            <c>Section 3 of <xref target="RFC3526"/></c>
+          <c>gss-group15-sha512-</c><c>SHA-512</c><c>3072-bit MODP</c>
+            <c>Section 4 of <xref target="RFC3526"/></c>
+          <c>gss-group16-sha512-</c><c>SHA-512</c><c>4096-bit MODP</c>
+            <c>Section 5 of <xref target="RFC3526"/></c>
+          <c>gss-group17-sha512-</c><c>SHA-512</c><c>6144-bit MODP</c>
+            <c>Section 6 of <xref target="RFC3526"/></c>
+          <c>gss-group18-sha512-</c><c>SHA-512</c><c>8192-bit MODP</c>
+            <c>Section 7 of <xref target="RFC3526"/></c>
+      </texttable>
     </section>
 
     <section title="New Elliptic Curve Diffie-Hellman Key Exchange methods">
@@ -551,75 +525,32 @@
         The IESG is considered to be the owner of all these key exchange
         methods; this does NOT imply that the IESG is considered to be the
         owner of the underlying GSS-API mechanism.</t>
-        <section title="gss-nistp256-sha256-*">
-            <t>Each of these methods specifies GSS-API-authenticated Elliptic
-                Curve Diffie-Hellman key exchange as described in
-                <xref target="gen_gss_ecdh"/>
-                of this document with SHA-256 as HASH, and the curve and base
-                point defined in section 2.4.2 of <xref target="SEC2v2"/> as
-                secp256r1. The method name for each method is the concatenation
-                of the string "gss-nistp256-sha256-" with the Base64 encoding
-                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
-                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
-                GSS-API mechanism's OID. Base64 encoding is described in
-                Section 6.8 of <xref target="RFC2045"/>.</t>
-        </section>
-
-        <section title="gss-nistp384-sha384-*">
-            <t>Each of these methods specifies GSS-API-authenticated Elliptic
-                Curve Diffie-Hellman key exchange as described in
-                <xref target="gen_gss_ecdh"/>
-                of this document with SHA-384 as HASH, and the curve and base
-                point defined in section 2.5.1 of <xref target="SEC2v2"/> as
-                secp384r1. The method name for each method is the concatenation
-                of the string "gss-nistp384-sha384-" with the Base64 encoding
-                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
-                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
-                GSS-API mechanism's OID. Base64 encoding is described in
-                Section 6.8 of <xref target="RFC2045"/>.</t>
-        </section>
-
-        <section title="gss-nistp521-sha512-*">
-            <t>Each of these methods specifies GSS-API-authenticated Elliptic
-                Curve Diffie-Hellman key exchange as described in
-                <xref target="gen_gss_ecdh"/>
-                of this document with SHA-512 as HASH, and the curve and base
-                point defined in section 2.6.1 of <xref target="SEC2v2"/> as
-                secp521r1. The method name for each method is the concatenation
-                of the string "gss-nistp521-sha512-" with the Base64 encoding
-                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
-                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
-                GSS-API mechanism's OID. Base64 encoding is described in
-                Section 6.8 of <xref target="RFC2045"/>.</t>
-        </section>
-
-        <section title="gss-curve25519-sha256-*">
-            <t>Each of these methods specifies GSS-API-authenticated Elliptic
-                Curve Diffie-Hellman key exchange as described in
-                <xref target="gen_gss_ecdh"/>
-                of this document with SHA-256 as HASH, and the X25519 function
-                defined in section 5 of <xref target="RFC7748"/>. The method
-                name for each method is the concatenation
-                of the string "gss-curve25519-sha256-" with the Base64 encoding
-                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
-                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
-                GSS-API mechanism's OID. Base64 encoding is described in
-                Section 6.8 of <xref target="RFC2045"/>.</t>
-        </section>
-
-        <section title="gss-curve448-sha512-*">
-            <t>Each of these methods specifies GSS-API-authenticated Elliptic
-                Curve Diffie-Hellman key exchange as described in
-                <xref target="gen_gss_ecdh"/>
-                of this document with SHA-512 as HASH, and the X448 function
-                defined in section 5 of <xref target="RFC7748"/>. The method
-                name for each method is the concatenation
-                of the string "gss-curve448-sha512-" with the Base64 encoding
-                of the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER
-                encoding <xref target="ISO-IEC-8825-1"/> of the underlying
-                GSS-API mechanism's OID. Base64 encoding is described in
-                Section 6.8 of <xref target="RFC2045"/>.</t>
-        </section>
+      <t>
+        Each method in any family of methods specifies GSS-API-authenticated
+        Elliptic Curve Diffie-Hellman key exchanges as described in <xref
+        target="gen_gss_ecdh"/>. The method name for each method is the
+        concatenation of the family method name with the Base64 encoding of
+        the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER encoding
+        <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
+        mechanism's OID. Base64 encoding is described in Section 6.8 of
+        <xref target="RFC2045"/>.</t>
+      <texttable>
+        <preamble>Family method refences</preamble>
+          <ttcol align="left">Family Name prefix</ttcol>
+          <ttcol align="left">Hash Function</ttcol>
+          <ttcol align="left">Parameters / Function Name</ttcol>
+          <ttcol align="left">Definition</ttcol>
+          <c>gss-nistp256-sha256-</c><c>SHA-256</c><c>secp256r1</c>
+            <c>Section 2.4.2 of <xref target="SEC2v2"/></c>
+          <c>gss-nistp384-sha384-</c><c>SHA-384</c><c>secp384r1</c>
+            <c>Section 2.5.1 of <xref target="SEC2v2"/></c>
+          <c>gss-nistp521-sha512-</c><c>SHA-512</c><c>secp521r1</c>
+            <c>Section 2.6.1 of <xref target="SEC2v2"/></c>
+          <c>gss-curve25519-sha256-</c><c>SHA-256</c><c>X22519</c>
+            <c>Section 5 of <xref target="RFC7748"/></c>
+          <c>gss-curve448-sha512-</c><c>SHA-512</c><c>X448</c>
+            <c>Section 5 of <xref target="RFC7748"/></c>
+      </texttable>
       </section>
     </section>
 
@@ -685,10 +616,6 @@
       <!--DH GROUPS-->
 
       &RFC3526;
-
-      <!-- SSH Transport -->
-
-      &RFC4253;
 
       <!--SSH GSS-API Methods-->
 
