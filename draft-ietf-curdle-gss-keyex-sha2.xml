@@ -196,32 +196,21 @@
           <list>
             <t>For NIST curves:
               <list>
-                <t>Selecting a value d_C uniformly at random from the interval
-                    [1, n-1] where n is the order of generator of the curve
-                    associated with the selected key exchange method.</t>
-                <t>Performing point multiplication between the curve base point
-                    and selected integer d_C to get the public point q_C.</t>
-                <t>Converts the point q_C to the Q_C octet string by
-                    concatenation of value 0x04 and big-endian representation
-                    of the x coordinate and then y coordinate. The coordinate
-                    coversion MUST preserve leading zero octets. Thus for
-                    nistp521 curve the encoded x coordinate will always have a
-                    length of 66 octets while the Q_C representation will be
-                    133 octets long. This is the uncompressed representation
-                    specified in Section 4.3.6 of
-                    <xref target="ANSI-X9-62-2005"/>.</t>
+                <t>Following the algorithm in Section 3.2.1 of
+                    <xref target="SEC1v2"/> to create a private key d_C and
+                    public key q_C using the curve paramaters associated
+                    with the selected key exchange method.</t>
+                <t>Converting the resulting point q_C to the Q_C octet string
+                    using the algorithm in Section 2.3.3 of
+                    <xref target="SEC1v2"/> to create uncompressed point
+                    representation.</t>
               </list>
             </t>
             <t>For curve25519 and curve448:
                 <list>
-                    <t>Selecting d_C as 32 uniformly distributed random octets
-                        for curve25519 and 56 octets for curve448.</t>
-                    <t>Preparing the generator g as the number 9 little-endian
-                        encoded in 32 octets for curve25519 and number
-                        5 in 56 octets for curve448. This is the same as an
-                        octet of value 0x09 followed by 31 zero octets for
-                        curve255519 and as an octect of value 0x05 followed by
-                        55 zero octets.</t>
+                    <t>Following the algorithm in Section 6.1 of
+                        <xref target="RFC7748"/>, the private key d_C and
+                        the base point g is prepared.</t>
                     <t>Calculating Q_C as the result of the call to X25519
                         or X448 function, respectively for curve25519 and
                         curve448 key exchange, with parameters d_C and g.</t>
@@ -284,28 +273,16 @@
                 or 56 octets for curve448. If the value does not have matching
                 length the key exchange MUST fail.</t>
             <t>In case of key exchanges that use NIST curves, the server MUST
-                check if the first octet of the Q_C is equal to 0x04.
-                If the octet has different value the key exchange MUST fail.
+                convert the Q_C to a point representation q_C and verify
+                that the Q_C used uncompressed point representation
+                using the algorithm in Section 2.3.4 of <xref target="SEC1v2"/>.
+                If the conversion failed or the point didn't use uncompressed
+                representation, the key exchange MUST fail.
             </t>
-            <t>For NIST curves, the server converts the octet representation of
-                the key to q_C point representation by interpreting the first
-                half of remaining octets as the unsigned big-endian
-                representation of the x coordinate of the point and the second
-                half as the unsigned big-endian representation of the y
-                coordinate.</t>
-            <t>For NIST curves, the server verifies that the q_C is not a point
-                at infinity, that both coordinates are in the interval
-                [0, p - 1], where p is the prime associated with the curve of
-                the selected key exchange and that the point lies on the curve
-                (satisfies the curve equation). See
-                <xref target="ANSI-X9-62-2005"/> for detailed description and
-                rationale.</t>
-            <t>For curve25519, the server verifies that the the high-order
-                bit of the last octet is not set - this prevents distinguishing
-                attacks between implementations that use Montgomery ladder
-                implementation of the curve and ones that use generic
-                elliptic-curve libraries. If the bit is set, the key exchange
-                SHOULD fail. For curve448 any bit can be set.</t>
+            <t>For NIST curves, the server performs the partial public key
+                verification described in Section 3.2.3.1 of
+                <xref target="SEC1v2"/>. If the verification fails, the key
+                exchange MUST fail.</t>
             <t>For curve25519 and curve448, the point is not decoded but used
                 as is. Q_C and q_C are considered equivalent.</t>
         </list></t>
@@ -345,15 +322,14 @@
                   d_U is the secret value, d_C for client and d_S for server
                   and q_V is the received public value, q_S for client and q_C
                   for server.</t>
-              <t>For NIST curves, the peers perform point multiplication using
-                  d_U and q_V to get point P.</t>
-              <t>For NIST curves, peers verify that P is not a point at
-                  infinity. If P is a point at infinity, the key exchange
-                  MUST fail.</t>
-              <t>For NIST curves, the shared secret is the zero-padded
-                  big-endian representation of the x coordinate of P -
-                  32 octets long for nistp256, 48 octets for nistp384 and 64
-                  octets long for nistp521.</t>
+              <t>For NIST curves, the peers calculate the shared secret field
+                  element using d_U and q_V using the algorithm in Section
+                  3.3.1 of <xref target="SEC1v2"/>. If the result is
+                  "invalid" (the shared secret point is a point
+                  at infinity), the key exchange MUST fail.</t>
+              <t>For NIST curves, the shared secret is the octet string
+                  representation of the field element using the algorithm
+                  described in Section 2.3.5 of <xref target="SEC1v2"/>.</t>
               <t>For curve25519 and curve448, the peers apply the X25519 or
                   X448 function, respectively for curve25519 and curve448,
                   on the d_U and q_V. The result of the function is
@@ -638,21 +614,21 @@
       <!--ECC specifications-->
 
       <reference
-          anchor="ANSI-X9-62-2005">
+          anchor="SEC1v2">
           <front>
-              <title>Public Key Cryptography for the Financial Services
-                  Industry, The Elliptic Curve Digital Signature Algorithm
-                  (ECDSA)</title>
+              <title>SEC 1: Elliptic Curve Cryptography</title>
               <author>
-                  <organization abbrev="ANSI">American National Standards
-                      Institute
-                  </organization>
+                  <organization>Certicom Research</organization>
               </author>
-              <date year="2005"/>
+              <date year="2009"/>
+              <note></note>
           </front>
           <seriesInfo
-              name="ANSI Standard"
-              value="X9.62"/>
+              name="Standards for Efficient Cryptography"
+              value="SEC 1"/>
+          <seriesInfo
+              name="Version"
+              value="2.0"/>
       </reference>
 
       <reference
@@ -667,6 +643,9 @@
           <seriesInfo
               name="Standards for Efficient Cryptography"
               value="SEC 2"/>
+          <seriesInfo
+              name="Version"
+              value="2.0"/>
       </reference>
     </references>
 
