@@ -356,28 +356,21 @@
         server or received by the client, then the empty string is used in
         place of K_S when computing the exchange hash.</t>
 
-        <t>NOTE:
-        <list>
-          <t>The GSS_GetMIC call MUST be applied over H, not the original
-          data.</t>
+        <t>Since this key exchange method does not require the host key to
+        be used for any encryption operations, the SSH_MSG_KEXGSS_HOSTKEY
+        message is OPTIONAL. If the "null" host key algorithm described in
+        Section 5 of <xref target="RFC4462"/> is used, this message MUST
+        NOT be sent.</t>
 
-          <t>Since this key exchange method does not require the host key to
-          be used for any encryption operations, the SSH_MSG_KEXGSS_HOSTKEY
-          message is OPTIONAL. If the "null" host key algorithm described in
-          Section 5 of <xref target="RFC4462"/> is used, this message MUST
-          NOT be sent.</t>
+        <t>If the client receives a SSH_MSG_KEXGSS_CONTINUE message after
+        a call to GSS_Init_sec_context() has returned a major_status code
+        of GSS_S_COMPLETE, a protocol error has occurred and the key
+        exchange MUST fail.</t>
 
-          <t>If the client receives a SSH_MSG_KEXGSS_CONTINUE message after
-          a call to GSS_Init_sec_context() has returned a major_status code
-          of GSS_S_COMPLETE, a protocol error has occurred and the key
-          exchange MUST fail.</t>
-
-          <t>If the client receives a SSH_MSG_KEXGSS_COMPLETE message and a
-          call to GSS_Init_sec_context() does not result in a amjor_status
-          code of GSS_S_COMPLETE, a protocol error has occurred and the key
-          exchange MUST fail.</t>
-        </list>
-        </t>
+        <t>If the client receives a SSH_MSG_KEXGSS_COMPLETE message and a
+        call to GSS_Init_sec_context() does not result in a major_status
+        code of GSS_S_COMPLETE, a protocol error has occurred and the key
+        exchange MUST fail.</t>
 
       </section>
 
