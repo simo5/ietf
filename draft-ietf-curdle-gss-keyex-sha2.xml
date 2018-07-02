@@ -24,7 +24,7 @@
 <?rfc autobreaks="yes"?>
 <?rfc docmapping="yes"?>
 
-<rfc category="std" docName="draft-ietf-curdle-gss-keyex-sha2-05"
+<rfc category="std" docName="draft-ietf-curdle-gss-keyex-sha2-06"
      ipr="trust200902" updates="4462">
   <front>
     <title abbrev="GSS Keyex SHA2">GSS-API Key Exchange with SHA2</title>
@@ -69,7 +69,7 @@
       </address>
     </author>
 
-    <date month="Feb" year="2018" />
+    <date month="Jul" year="2018" />
 
     <area>Security</area>
 
@@ -258,23 +258,23 @@
       ------                                                ------
       Generate ephemeral key pair.
       Calls GSS_Init_sec_context().
-      SSH_MSG_KEXGSS_INIT  --------------->
+      SSH_MSG_KEXGSS_INIT  ---------------&gt;
 
                                       Verify received key is valid.
-  (Optional)                  <------------- SSH_MSG_KEXGSS_HOSTKEY
+  (Optional)                  &lt;------------- SSH_MSG_KEXGSS_HOSTKEY
 
   (Loop)
   |                                 Calls GSS_Accept_sec_context().
-  |                           <------------ SSH_MSG_KEXGSS_CONTINUE
+  |                           &lt;------------ SSH_MSG_KEXGSS_CONTINUE
   |   Calls GSS_Init_sec_context().
-  |   SSH_MSG_KEXGSS_CONTINUE ------------>
+  |   SSH_MSG_KEXGSS_CONTINUE ------------&gt;
 
                                     Calls GSS_Accept_sec_context().
                                        Generate ephemeral key pair.
                                              Compute shared secret.
                                                    Computes hash H.
                                        Calls GSS_GetMIC( H ) = MIC.
-                              <------------ SSH_MSG_KEXGSS_COMPLETE
+                              &lt;------------ SSH_MSG_KEXGSS_COMPLETE
 
       Verify received key is valid.
       Compute shared secret.
@@ -356,28 +356,21 @@
         server or received by the client, then the empty string is used in
         place of K_S when computing the exchange hash.</t>
 
-        <t>NOTE:
-        <list>
-          <t>The GSS_GetMIC call MUST be applied over H, not the original
-          data.</t>
+        <t>Since this key exchange method does not require the host key to
+        be used for any encryption operations, the SSH_MSG_KEXGSS_HOSTKEY
+        message is OPTIONAL. If the "null" host key algorithm described in
+        Section 5 of <xref target="RFC4462"/> is used, this message MUST
+        NOT be sent.</t>
 
-          <t>Since this key exchange method does not require the host key to
-          be used for any encryption operations, the SSH_MSG_KEXGSS_HOSTKEY
-          message is OPTIONAL. If the "null" host key algorithm described in
-          Section 5 of <xref target="RFC4462"/> is used, this message MUST
-          NOT be sent.</t>
+        <t>If the client receives a SSH_MSG_KEXGSS_CONTINUE message after
+        a call to GSS_Init_sec_context() has returned a major_status code
+        of GSS_S_COMPLETE, a protocol error has occurred and the key
+        exchange MUST fail.</t>
 
-          <t>If the client receives a SSH_MSG_KEXGSS_CONTINUE message after
-          a call to GSS_Init_sec_context() has returned a major_status code
-          of GSS_S_COMPLETE, a protocol error has occurred and the key
-          exchange MUST fail.</t>
-
-          <t>If the client receives a SSH_MSG_KEXGSS_COMPLETE message and a
-          call to GSS_Init_sec_context() does not result in a amjor_status
-          code of GSS_S_COMPLETE, a protocol error has occurred and the key
-          exchange MUST fail.</t>
-        </list>
-        </t>
+        <t>If the client receives a SSH_MSG_KEXGSS_COMPLETE message and a
+        call to GSS_Init_sec_context() does not result in a major_status
+        code of GSS_S_COMPLETE, a protocol error has occurred and the key
+        exchange MUST fail.</t>
 
       </section>
 
@@ -517,7 +510,6 @@
                   <organization>Certicom Research</organization>
               </author>
               <date year="2009"/>
-              <note></note>
           </front>
           <seriesInfo
               name="Standards for Efficient Cryptography"
