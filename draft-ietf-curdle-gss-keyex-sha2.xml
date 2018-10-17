@@ -180,7 +180,9 @@
         <xref target="RFC5656"/> apply here as well.</t>
 
         <t>For curve25519 and curve448 related computations see Section 6
-        of <xref target="RFC7748"/>.</t>
+        of <xref target="RFC7748"/>; implementations MUST check whether the
+        computed Diffie-Hellman shared secret is the all-zero value and
+        abort if so.</t>
 
         <t>This section defers to <xref target="RFC7546"/> as the source of
         information on GSS-API context establishment operations, Section 3
