@@ -179,10 +179,16 @@
         verification steps prescribed in Section 4 of
         <xref target="RFC5656"/> apply here as well.</t>
 
-        <t>For curve25519 and curve448 related computations see Section 6
-        of <xref target="RFC7748"/>; implementations MUST check whether the
-        computed Diffie-Hellman shared secret is the all-zero value and
-        abort if so.</t>
+        <t>Key-agreement schemes ECDHE-Curve25519 and ECDHE-Curve448 perform
+        the Diffie-Helman protocol using the functions X25519 and X448,
+        respectively. Implementations SHOULD compute these functions using
+        the algorithms described in <xref target="RFC7748"/>. When they do
+        so, implementations MUST check whether the computed Diffie-Hellman
+        shared secret is the all-zero value and abort if so, as described in
+        Section 6 of <xref target="RFC7748"/>. Alternative implementations
+        of these functions SHOULD abort when either input forces the shared
+        secret to one of a small set of values, as discussed in Section 7 of
+        <xref target="RFC7748"/>.</t>
 
         <t>This section defers to <xref target="RFC7546"/> as the source of
         information on GSS-API context establishment operations, Section 3
