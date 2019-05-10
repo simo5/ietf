@@ -101,17 +101,19 @@
       group16, group17 and group18 <xref target="RFC3526"/>. Additionally we
       add support for key exchange based on Elliptic Curve Diffie Hellman with
       the NIST P-256, P-384 and P-521 as well as the X25519 and X448 curves.
-      Following the rationale of <xref target="RFC8268"/> only SHA-256 and
+      Following the practice of <xref target="RFC8268"/> only SHA-256 and
       SHA-512 hashes are used for DH groups. For NIST curves the same
       curve-to-hashing algorithm pairing used in <xref target="RFC5656"/> is
       adopted for consistency.</t>
     </section>
 
     <section title="Document Conventions">
-      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-      "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-      document are to be interpreted as described in <xref target="RFC2119">
-      RFC 2119</xref>.</t>
+      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+      NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+      "MAY", and "OPTIONAL" in this document are to be interpreted as
+      described in BCP 14 <xref target="RFC2119">>RFC2119</xref>
+      <xref target="RFC8174">RFC8174</xref> when, and only when, they
+      appear in all capitals, as shown here.</t>
     </section>
 
     <section title="New Diffie-Hellman Key Exchange methods">
@@ -140,7 +142,7 @@
         Each method in any family of methods specifies GSS-API-authenticated
         Diffie-Hellman key exchanges as described in Section 2.1 of <xref
         target="RFC4462"/>. The method name for each method is the
-        concatenation of the family method name with the Base64 encoding of
+        concatenation of the family name prefix with the Base64 encoding of
         the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER encoding
         <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
         mechanism's OID. Base64 encoding is described in Section 6.8 of
@@ -167,6 +169,7 @@
     <section title="New Elliptic Curve Diffie-Hellman Key Exchange methods">
       <t>In <xref target="RFC5656"/> new SSH key exchange algorithms based on
       Elliptic Curve Cryptography are introduced. We reuse much of section 4
+      of <xref target="RFC5656"/>
       to define GSS-API-authenticated ECDH Key Exchanges.</t>
       <t>Additionally we utilize also the curves defined in <xref
       target="I-D.ietf-curdle-ssh-curves"/> to complement the 3 classic
@@ -200,10 +203,10 @@
         receipt by the parties according to Section 3.2.3.1 of
         <xref target="SEC1v2"/>.</t>
 
-        <t>For NIST Curves keys use uncompressed point representation and
-        must be converted using the algorithm in Section 2.3.4 of
+        <t>For NIST Curves the keys use the uncompressed point representation
+        and must be converted using the algorithm in Section 2.3.4 of
         <xref target="SEC1v2"/>. If the conversion fails or the point is
-        trasmitted using compressed representation, the key exchange MUST
+        trasmitted using the compressed representation, the key exchange MUST
         fail.</t>
 
         <t>A GSS Context is established according to Section 4 of
@@ -239,7 +242,7 @@
         to Section 3.3.1 of <xref target="SEC1v2"/> and the resulting value
         z is converted to the octet string K using the conversion defined
         in Section 2.3.5 of <xref target="SEC1v2"/>. For curve25519 and
-        curve448 the algorithm in Section 6 of <xref target="RFC7748"/> is
+        curve448 the algorithms in Section 6 of <xref target="RFC7748"/> are
         used instead.</t>
 
         <t>To verify the integrity of the handshake, peers use the Hash
