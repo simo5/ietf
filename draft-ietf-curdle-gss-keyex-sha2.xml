@@ -439,17 +439,16 @@
         with the following entries:</preamble>
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Reference</ttcol>
-          <ttcol align="left">Implementation Support</ttcol>
-          <c>gss-group14-sha256-*</c><c>This draft</c><c>SHOULD</c>
-          <c>gss-group15-sha512-*</c><c>This draft</c><c>MAY</c>
-          <c>gss-group16-sha512-*</c><c>This draft</c><c>SHOULD</c>
-          <c>gss-group17-sha512-*</c><c>This draft</c><c>MAY</c>
-          <c>gss-group18-sha512-*</c><c>This draft</c><c>MAY</c>
-          <c>gss-nistp256-sha256-*</c><c>This draft</c><c>SHOULD</c>
-          <c>gss-nistp384-sha384-*</c><c>This draft</c><c>MAY</c>
-          <c>gss-nistp521-sha512-*</c><c>This draft</c><c>MAY</c>
-          <c>gss-curve25519-sha256-*</c><c>This draft</c><c>SHOULD</c>
-          <c>gss-curve448-sha512-*</c><c>This draft</c><c>MAY</c>
+          <c>gss-group14-sha256-*</c><c>This draft</c>
+          <c>gss-group15-sha512-*</c><c>This draft</c>
+          <c>gss-group16-sha512-*</c><c>This draft</c>
+          <c>gss-group17-sha512-*</c><c>This draft</c>
+          <c>gss-group18-sha512-*</c><c>This draft</c>
+          <c>gss-nistp256-sha256-*</c><c>This draft</c>
+          <c>gss-nistp384-sha384-*</c><c>This draft</c>
+          <c>gss-nistp521-sha512-*</c><c>This draft</c>
+          <c>gss-curve25519-sha256-*</c><c>This draft</c>
+          <c>gss-curve448-sha512-*</c><c>This draft</c>
       </texttable>
     </section>
 
