@@ -211,7 +211,7 @@
 
         <t>A GSS Context is established according to Section 4 of
         <xref target="RFC5656"/>; The client initiates the establishment
-        using GSS_Init_sec_context() and the server completes it using
+        using GSS_Init_sec_context() and the server responds to it using
         GSS_Accept_sec_context(). For the negotiation, the client MUST set
         mutual_req_flag and integ_req_flag to "true". In addition,
         deleg_req_flag MAY be set to "true" to request access delegation, if
@@ -223,9 +223,10 @@
         conjunction with the GSS-API context established during key exchange,
         then anon_req_flag SHOULD be set to "true". Otherwise, this flag MAY
         be set to true if the client wishes to hide its identity.
-        This key exchange process will exchange only a single token once the
-        context has been established, therefore the replay_det_req_flag and
-        sequence_req_flag SHOULD be set to "false".</t>
+        This key exchange process will exchange only a single message token
+        once the context has been established, therefore the
+        replay_det_req_flag and sequence_req_flag SHOULD be set to "false".
+        </t>
 
         <t>The client MUST include its public key with the first message it
         sends to the server during this process; if the server receives
