@@ -439,9 +439,9 @@
         <preamble>Deprecated Algorithms</preamble>
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Implementation Recommendations</ttcol>
-          <c>gss-group1-sha1-*</c><c>SHOULD NOT/DEPRECATED</c>
-          <c>gss-group14-sha1-*</c><c>SHOULD NOT DEPRECATED</c>
-          <c>gss-gex-sha1-*</c><c>SHOULD NOT/DEPRECATED</c>
+          <c>gss-group1-sha1-*</c><c>SHOULD NOT</c>
+          <c>gss-group14-sha1-*</c><c>SHOULD NOT/c>
+          <c>gss-gex-sha1-*</c><c>SHOULD NOT</c>
       </texttable>
     </section>
            
