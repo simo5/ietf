@@ -431,6 +431,20 @@
       </section>
     </section>
 
+    <section title="Deprecated Algorithms">
+      <t>Because they have small key lengths and are no longer strong in
+      the face of brute-force attacks, the algorithms in the following
+      table are considered deprecated and SHOULD NOT be used.</t>
+      <texttable>
+        <preamble>Deprecated Algorithms</preamble>
+          <ttcol align="left">Key Exchange Method Name</ttcol>
+          <ttcol align="left">Implementation Recommendations</ttcol>
+          <c>gss-group1-sha1-*</c><c>SHOULD NOT/DEPRECATED</c>
+          <c>gss-group14-sha1-*</c><c>SHOULD NOT DEPRECATED</c>
+          <c>gss-gex-sha1-*</c><c>SHOULD NOT/DEPRECATED</c>
+      </texttable>
+    </section>
+           
     <section title="IANA Considerations">
       <t>This document augments the SSH Key Exchange Method Names in <xref
       target="RFC4462"/>.</t>
@@ -440,6 +454,9 @@
         with the following entries:</preamble>
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Reference</ttcol>
+          <c>gss-group1-sha1-*</c><c>This draft</c>
+          <c>gss-group14-sha1-*</c><c>This draft</c>
+          <c>gss-gex-sha1-*</c><c>This draft</c>
           <c>gss-group14-sha256-*</c><c>This draft</c>
           <c>gss-group15-sha512-*</c><c>This draft</c>
           <c>gss-group16-sha512-*</c><c>This draft</c>
