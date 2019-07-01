@@ -112,7 +112,7 @@
       <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
       NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
       "MAY", and "OPTIONAL" in this document are to be interpreted as
-      described in BCP 14 <xref target="RFC2119">>RFC2119</xref>
+      described in BCP 14 <xref target="RFC2119">RFC2119</xref>
       <xref target="RFC8174">RFC8174</xref> when, and only when, they
       appear in all capitals, as shown here.</t>
     </section>
@@ -121,11 +121,9 @@
       <t>This document adopts the same naming convention defined in <xref
         target="RFC4462"/> to define families of methods that cover any
         GSS-API mechanism used with a specific Diffie-Hellman group and
-        SHA-2 Hash combination.
-      </t>
-      <texttable>
-        <preamble>The following new key exchange algorithms are defined:
-        </preamble>
+        SHA-2 Hash combination.</t>
+
+      <texttable anchor="gss_ex_alg" title="New key exchange algorithms">
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Implementation Recommendations</ttcol>
           <c>gss-group14-sha256-*</c><c>SHOULD/RECOMMENDED</c>
@@ -140,16 +138,16 @@
         owner of the underlying GSS-API mechanism.
       </t>
       <t>
-        Each method in any family of methods specifies GSS-API-authenticated
-        Diffie-Hellman key exchanges as described in Section 2.1 of <xref
-        target="RFC4462"/>. The method name for each method is the
+        Each method in any <xref target="fam_met">family of methods</xref>
+        specifies GSS-API-authenticated Diffie-Hellman key exchanges as
+        described in Section 2.1 of <xref target="RFC4462"/>. The <xref
+        target="gss_ex_alf">method name for each method</xref> is the
         concatenation of the family name prefix with the Base64 encoding of
         the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER encoding
         <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
         mechanism's OID. Base64 encoding is described in Section 6.8 of
         <xref target="RFC2045"/>.</t>
-      <texttable>
-        <preamble>Family method refences</preamble>
+      <texttable anchor="fam_met" title="Family method references">
           <ttcol align="left">Family Name prefix</ttcol>
           <ttcol align="left">Hash Function</ttcol>
           <ttcol align="left">Group </ttcol>
@@ -172,8 +170,8 @@
       Elliptic Curve Cryptography are introduced. We reuse much of section 4
       of <xref target="RFC5656"/>
       to define GSS-API-authenticated ECDH Key Exchanges.</t>
-      <t>Additionally we utilize also the curves defined in <xref
-      target="I-D.ietf-curdle-ssh-curves"/> to complement the 3 classic
+      <t>Additionally, we also utilize the curves defined in <xref
+      target="I-D.ietf-curdle-ssh-curves"/> to complement the three classic
       NIST defined curves required by <xref target="RFC5656"/>.</t>
 
       <section title="Generic GSS-API Key Exchange with ECDH" anchor="gen_gss_ecdh">
@@ -207,7 +205,7 @@
         <t>For NIST Curves the keys use the uncompressed point representation
         and must be converted using the algorithm in Section 2.3.4 of
         <xref target="SEC1v2"/>. If the conversion fails or the point is
-        trasmitted using the compressed representation, the key exchange MUST
+        transmitted using the compressed representation, the key exchange MUST
         fail.</t>
 
         <t>A GSS Context is established according to Section 4 of
@@ -233,8 +231,8 @@
         sends to the server during this process; if the server receives
         more than one key or none at all, the key exchange MUST fail.</t>
 
-        <t>During GSS Context estalishment multiple tokens may be exchanged by
-        the client and the server. When the GSS Context is established
+        <t>During GSS Context establishment multiple tokens may be exchanged
+        by the client and the server. When the GSS Context is established
         (major_status is GSS_S_COMPLETE) the parties check that
         mutual_state and integ_avail are both "true". If not the key
         exchange MUST fail.</t>
@@ -388,9 +386,7 @@
       </section>
 
       <section title="ECDH Key Exchange Methods">
-      <texttable>
-        <preamble>The following new key exchange methods are defined:
-        </preamble>
+      <texttable anchor="ecc_ex_alg" title="New key exchange methods">
           <ttcol align="left">Key Exchange Method Name</ttcol>
           <ttcol align="left">Implementation Recommendations</ttcol>
           <c>gss-nistp256-sha256-*</c><c>SHOULD/RECOMMENDED</c>
@@ -404,16 +400,16 @@
         methods; this does NOT imply that the IESG is considered to be the
         owner of the underlying GSS-API mechanism.</t>
       <t>
-        Each method in any family of methods specifies GSS-API-authenticated
-        Elliptic Curve Diffie-Hellman key exchanges as described in <xref
-        target="gen_gss_ecdh"/>. The method name for each method is the
+        Each method in any <xref target="fam_met_ecc">family of methods</xref>
+        specifies GSS-API-authenticated Elliptic Curve Diffie-Hellman key
+        exchanges as described in <xref target="gen_gss_ecdh"/>. The <xref
+        target="ecc_ex_alg">method name for each method</xref> is the
         concatenation of the family method name with the Base64 encoding of
         the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER encoding
         <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
         mechanism's OID. Base64 encoding is described in Section 6.8 of
         <xref target="RFC2045"/>.</t>
-      <texttable>
-        <preamble>Family method refences</preamble>
+      <texttable anchor="fam_met_ecc" title="Family method refences">
           <ttcol align="left">Family Name prefix</ttcol>
           <ttcol align="left">Hash Function</ttcol>
           <ttcol align="left">Parameters / Function Name</ttcol>
@@ -445,7 +441,7 @@
           <c>gss-gex-sha1-*</c><c>SHOULD NOT</c>
       </texttable>
     </section>
-           
+
     <section title="IANA Considerations">
       <t>This document augments the SSH Key Exchange Method Names in <xref
       target="RFC4462"/>.</t>
