@@ -135,10 +135,9 @@
           <c>gss-group18-sha512-*</c><c>MAY/OPTIONAL</c>
       </texttable>
       <t>Each key exchange method prefix is registered by this document.
-        The IESG is considered to be the owner of all these key exchange
-        methods; this does NOT imply that the IESG is considered to be the
-        owner of the underlying GSS-API mechanism.
-      </t>
+        The IESG is the change controller of all these key exchange methods;
+        this does NOT imply that the IESG is considered to be in control of
+        the corresponding GSS-API mechanism.</t>
       <t>
         Each method in any <xref target="fam_met">family of methods</xref>
         specifies GSS-API-authenticated Diffie-Hellman key exchanges as
@@ -146,7 +145,7 @@
         target="gss_ex_alf">method name for each method</xref> is the
         concatenation of the family name prefix with the Base64 encoding of
         the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER encoding
-        <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
+        <xref target="ISO-IEC-8825-1"/> of the corresponding GSS-API
         mechanism's OID. Base64 encoding is described in Section 4 of
         <xref target="RFC4648"/>.</t>
       <texttable anchor="fam_met" title="Family method references">
@@ -398,9 +397,9 @@
           <c>gss-curve448-sha512-*</c><c>MAY/OPTIONAL</c>
       </texttable>
       <t>Each key exchange method prefix is registered by this document.
-        The IESG is considered to be the owner of all these key exchange
-        methods; this does NOT imply that the IESG is considered to be the
-        owner of the underlying GSS-API mechanism.</t>
+        The IESG is the change controller of all these key exchange methods;
+        this does NOT imply that the IESG is considered to be in control of
+        the corresponding GSS-API mechanism.</t>
       <t>
         Each method in any <xref target="fam_met_ecc">family of methods</xref>
         specifies GSS-API-authenticated Elliptic Curve Diffie-Hellman key
@@ -408,7 +407,7 @@
         target="ecc_ex_alg">method name for each method</xref> is the
         concatenation of the family method name with the Base64 encoding of
         the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER encoding
-        <xref target="ISO-IEC-8825-1"/> of the underlying GSS-API
+        <xref target="ISO-IEC-8825-1"/> of the corresponding GSS-API
         mechanism's OID. Base64 encoding is described in Section 4 of
         <xref target="RFC4648"/>.</t>
       <texttable anchor="fam_met_ecc" title="Family method refences">
