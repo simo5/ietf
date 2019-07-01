@@ -97,7 +97,7 @@
     <section title="Rationale">
       <t>Due to security concerns with SHA-1 <xref target="RFC6194"/> and with
       MODP groups with less than 2048 bits <xref target="NIST-SP-800-131Ar1"/>
-      we propose the use of the SHA-2 <xref target="RFC6234"/> based hashes
+      we propose the use of hashes based on SHA-2 <xref target="RFC6234"/>
       with DH group14, group15,
       group16, group17 and group18 <xref target="RFC3526"/>. Additionally we
       add support for key exchange based on Elliptic Curve Diffie Hellman with
@@ -134,7 +134,7 @@
           <c>gss-group17-sha512-*</c><c>MAY/OPTIONAL</c>
           <c>gss-group18-sha512-*</c><c>MAY/OPTIONAL</c>
       </texttable>
-      <t>Each key exchange method is implicitly registered by this document.
+      <t>Each key exchange method prefix is registered by this document.
         The IESG is considered to be the owner of all these key exchange
         methods; this does NOT imply that the IESG is considered to be the
         owner of the underlying GSS-API mechanism.
@@ -399,7 +399,7 @@
           <c>gss-curve25519-sha256-*</c><c>SHOULD/RECOMMENDED</c>
           <c>gss-curve448-sha512-*</c><c>MAY/OPTIONAL</c>
       </texttable>
-      <t>Each key exchange method is implicitly registered by this document.
+      <t>Each key exchange method prefix is registered by this document.
         The IESG is considered to be the owner of all these key exchange
         methods; this does NOT imply that the IESG is considered to be the
         owner of the underlying GSS-API mechanism.</t>
@@ -489,10 +489,10 @@
         <t>Some GSSAPI mechanisms can act on a request to delegate credentials
         to the target host when the deleg_req_flag is set. In this case, extra
         care must be taken to ensure that the acceptor being authenticated
-        matches the target the user intended. Some mechanisms implementations
-        (like commonly used krb5 libraries) may use insecure DNS resolution to
+        matches the target the user intended. Some mechanism implementations
+        (such as commonly used krb5 libraries) may use insecure DNS resolution to
         canonicalize the target name; in these cases spoofing a DNS response
-        that points to an attacker-controlled machine may results in the user
+        that points to an attacker-controlled machine may result in the user
         silently delegating credentials to the attacker, who can then
         impersonate the user at will.</t>
       </section>
