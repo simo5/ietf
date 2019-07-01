@@ -199,7 +199,7 @@
         being the most relevant. All Security Considerations described in
         <xref target="RFC7546"/> apply here too.</t>
 
-        <t>The parties generate each an ephemeral key pair, according to
+        <t>The parties each generate an ephemeral key pair, according to
         Section 3.2.1 of <xref target="SEC1v2"/>. Keys are verified upon
         receipt by the parties according to Section 3.2.3.1 of
         <xref target="SEC1v2"/>.</t>
