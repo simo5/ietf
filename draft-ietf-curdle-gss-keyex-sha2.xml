@@ -143,7 +143,7 @@
         Each method in any <xref target="fam_met">family of methods</xref>
         specifies GSS-API-authenticated Diffie-Hellman key exchanges as
         described in Section 2.1 of <xref target="RFC4462"/>. The <xref
-        target="gss_ex_alf">method name for each method</xref> is the
+        target="gss_ex_alg">method name for each method</xref> is the
         concatenation of the family name prefix with the Base64 encoding of
         the MD5 hash <xref target="RFC1321"/> of the ASN.1 DER encoding
         <xref target="ISO-IEC-8825-1"/> of the corresponding GSS-API
